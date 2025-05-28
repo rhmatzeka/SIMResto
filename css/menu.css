@@ -1,0 +1,561 @@
+* {
+  padding: 0;
+  margin: o;
+  box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 7%;
+  background-color: rgba(1, 1, 1, 0.8);
+  border-bottom: 2px solid #3f7d58;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.navbar .navbar-logo .img-navbar {
+  height: 3.5rem;
+  width: 11rem;
+  margin-right: 1rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.navbar .navbar-nav a {
+  color: #fff;
+  display: inline-block;
+  font-size: 1.3;
+  margin: 0 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+  color: var(--primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--primary);
+  transform: scaleX(0);
+  transition: 0.3s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.5);
+}
+
+.dropbtn {
+  font-size: 1.3;
+  border: none;
+  cursor: pointer;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: rgba(1, 1, 1, 0.8);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.navbar .navbar-extra a {
+  color: #fff;
+  margin: 0 0.5rem;
+}
+
+.navbar .navbar-extra a:hover {
+  color: var(--primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode {
+  --bg: white;
+  --bgsecondary: black;
+  background-color: var(--bg);
+  color: black;
+}
+
+.dark-mode .navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid #a0c878;
+}
+
+.dark-mode .navbar .navbar-nav a,
+.dark-mode .navbar .navbar-extra a {
+  color: black;
+}
+
+.dark-mode .navbar .navbar-nav a:hover,
+.dark-mode .navbar .navbar-extra a:hover {
+  color: var(--primary);
+}
+
+.dark-mode .dropdown-content {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.dark-mode .dropdown-content a {
+  color: black;
+}
+
+#hamburger-menu {
+  display: none;
+}
+
+/* end navbar */
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #050505;
+  /* background-image: url("assets menu makanan & minuman/snacks/9415f027-4d0f-4a3c-b7db-de681e6dc10a.jpg"); */
+}
+
+.bg-image {
+  background-image: url("assets menu makanan & minuman/backgroud-makanan.png");
+  background-size: cover;
+  color: #9e1111;
+  margin-top: 100px;
+  padding: 60px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.MainCourse {
+  background-image: url("assets menu makanan & minuman/Main Course/banner-maincourse.png");
+  padding: 60px;
+  background-size: cover;
+  margin-bottom: 30px;
+  color: #8d5530;
+  text-align: center;
+}
+
+.Appetizer {
+  background-image: url("assets menu makanan & minuman/Appetizer/banner.png");
+  object-fit: fill;
+  padding: 60px;
+  color: #8d5530;
+  text-align: center;
+}
+
+.minuman {
+  background-image: url("assets menu makanan & minuman/Coffee & Non Coffee/banner-minuman.jpeg");
+  padding: 100px;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  color: #8d5530;
+  text-align: center;
+}
+
+.coffee {
+  background-image: url("assets menu makanan & minuman/Coffee/banner.jpg");
+  padding: 100px;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  color: #8d5530;
+  text-align: center;
+}
+
+.Cemilan {
+  background-image: url("assets menu makanan & minuman/Cemilan & Dessert/banner-Cemilan&Dessert.png");
+  padding: 100px;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  color: #8d5530;
+  text-align: center;
+}
+.dessert {
+  background-image: url("assets menu makanan & minuman/Desserts/1a7a9702-682a-4ee1-9179-95dfd127d587.jpg");
+  padding: 100px;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  color: #ddab89;
+  text-align: center;
+}
+
+.snacks {
+  background-image: url("assets menu makanan & minuman/snacks/Pizza Cartoon Yellow Poster Banner Background, Food, Snack, Sky Background Image And Wallpaper for Free Download.jpg");
+  padding: 100px;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.Juice {
+  background-image: url("assets menu makanan & minuman/jus/banner.png");
+  object-fit: fill;
+  padding: 60px;
+  color: #8d5530;
+  text-align: center;
+}
+
+/* gambar bulat */
+.circular-categories-container {
+  padding: 10px 20px 30px 20px;
+}
+
+.circular-categories-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.category-item-circle {
+  text-align: center;
+  flex: 1;
+  min-width: 130px;
+  max-width: 180px;
+}
+
+.category-item-circle a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.category-item-circle img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff8ec;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item-circle img:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.category-item-circle h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0;
+  color: #fff8ec;
+}
+
+/* makanan minuman dan dessert */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.menu-card {
+  background-color: rgba(36, 35, 35, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.menu-image {
+  width: 260px;
+  height: 220px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.menu-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #d35400;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.menu-description {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  margin-bottom: 10px;
+  max-height: 60px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.menu-card.active .menu-description {
+  max-height: 200px;
+}
+
+.menu-price {
+  font-weight: 700;
+  font-size: 18px;
+  color: #2980b9;
+  margin-bottom: 15px;
+}
+
+.order-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.order-controls button {
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #d35400;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.order-controls button:hover {
+  background-color: #e67e22;
+}
+
+.order-quantity {
+  font-size: 18px;
+  min-width: 25px;
+  text-align: center;
+  color: #d35400;
+  font-weight: 700;
+}
+
+/* Checkout card*/
+#checkout-card {
+  display: none; /* Awalnya tersembunyi */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px; /* Sesuaikan lebar */
+  max-height: 400px; /* Batas tinggi maksimum */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  flex-direction: column; /* Karena JS menggunakan display: flex */
+  gap: 10px; /* Jarak antar elemen di dalam checkout card */
+}
+
+#checkout-card h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  color: #333;
+  text-align: center;
+}
+
+#checkout-items {
+  overflow-y: auto; /* Scroll jika item banyak */
+  flex-grow: 1; /* Agar bisa memanjang */
+  margin-bottom: 10px;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9em;
+}
+.checkout-item:last-child {
+  border-bottom: none;
+}
+.checkout-item .name {
+  flex-basis: 60%;
+  text-align: left;
+}
+.checkout-item .qty {
+  flex-basis: 15%;
+  text-align: center;
+}
+.checkout-item .price {
+  flex-basis: 25%;
+  text-align: right;
+  font-weight: bold;
+}
+
+#checkout-total {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: right;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+#checkout-button {
+  background-color: #28a745; /* Warna hijau, sesuaikan */
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#checkout-button:hover {
+  background-color: #218838;
+}
+
+
+/* media queris */
+/* laptop */
+@media (max-width: 1366px) {
+  html {
+    font-size: 75%;
+  }
+}
+/* tablet */
+@media (max-width: 758px) {
+  html {
+    font-size: 62.5%;
+  }
+
+  #hamburger-menu {
+    display: inline-block;
+  }
+
+  .navbar .navbar-nav {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    background-color: #fff;
+    width: 30rem;
+    height: 100vh;
+    transition: 0.3s;
+  }
+
+  .navbar .navbar-nav.active {
+    right: 0;
+  }
+
+  .navbar .navbar-nav a {
+    color: var(--bg);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+
+  .navbar .navbar-nav a::after {
+    transform-origin: 0 0;
+  }
+
+  .navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.2);
+  }
+
+  .about .row {
+    flex-wrap: wrap;
+  }
+
+  .about .row .about-img img {
+    height: 24rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about .row .content {
+    padding: 0;
+  }
+
+  .about .row .content h3 {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+
+  .about .row .content p {
+    font-size: 1.4rem;
+  }
+
+  .menu p {
+    font-size: 1.4rem;
+  }
+
+  .contact .row {
+    flex-wrap: wrap;
+  }
+
+  .contact .row .map {
+    height: 30rem;
+  }
+
+  .contact .from .form-title {
+    padding-top: 5rem;
+  }
+
+  .contact .from form {
+    padding-top: 0.5rem;
+  }
+
+  .contact .map-title {
+    padding-top: 4rem;
+  }
+}
+/* mobile */
+@media (max-width: 450px) {
+  html {
+    font-size: 55%;
+  }
+}

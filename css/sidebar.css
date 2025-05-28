@@ -1,0 +1,260 @@
+/* Reset dan pengaturan font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(#F1FAFF, #CBE4FF);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 270px;
+    position: fixed;
+    margin: 16px;
+    border-radius: 16px;
+    background: #151a2d;
+    height: calc(100vh - 32px);
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed {
+    width: 85px;
+}
+
+/* Header sidebar */
+.sidebar-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 25px 20px;
+    justify-content: flex-start;
+}
+
+.header-logo img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.text-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 12px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.text-header .name {
+    font-weight: 600;
+}
+
+.text-header .rank {
+    margin-top: -2px;
+}
+
+.sidebar.collapsed .text-header .name,
+.sidebar.collapsed .text-header .rank {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.sidebar.collapsed .text-header {
+    margin-left: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.toggler {
+    height: 35px;
+    width: 35px;
+    border: none;
+    color: #151a2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #fff;
+    transition: 0.4s ease;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
+.sidebar-header .sidebar-toggler {
+    position: absolute;
+    right: 20px;
+}
+
+.sidebar.collapsed .sidebar-header .sidebar-toggler {
+    transform: translate(-4px, 65px);
+}
+
+.toggler:hover {
+    background: #dde4fb;
+}
+
+.sidebar-header .menu-toggler {
+    display:none
+}
+
+.sidebar-header .sidebar-toggler span {
+    font-size: 1.75rem;
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-header .sidebar-toggler span {
+    transform: rotate(180deg);
+    transition: 0.4s ease;
+}
+
+/* Navigasi sidebar */
+.sidebar-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    padding: 0 15px;
+    flex-direction: column;
+    transform: translateY(15px);
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .primary-nav {
+    transform: translateY(65px);
+}
+
+.sidebar-nav .nav-link {
+    color: #fff;
+    display: flex;
+    gap: 12px;
+    white-space: nowrap;
+    border-radius: 8px;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #151a2d;
+    background: #fff;
+}
+
+.sidebar-nav .nav-link .nav-label {
+    transition: opacity 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-link .nav-label {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-nav .nav-item {
+    position: relative;
+}
+
+.sidebar-nav .nav-tooltip {
+    position: absolute;
+    top: -10px;
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+    left: calc(100% + 25px);
+    color: #151a2d;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #fff;
+    white-space: nowrap;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 0s;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-tooltip {
+    display: block;
+}
+
+.sidebar-nav .nav-item:hover .nav-tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(50%);
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .secondary-nav {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        height: 56px;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        margin: 13px;
+        width: calc(100% - 26px);
+        max-height: calc(100vh - 26px);
+    }
+
+    .sidebar .menu-active {
+        overflow-y: auto;
+    }
+
+    .sidebar-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: #151a2d;
+        padding: 8px 10px;
+        border-radius: 16px;
+    }
+
+    .sidebar-header .header-logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .sidebar-header .sidebar-toggler {
+        display:none;
+    }
+
+    .sidebar-header .menu-toggler {
+        display:flex;
+        height:30px;
+        width: 30px;
+    }
+
+    .sidebar-header .menu-toggler span {
+        font-size: 1.3rem;
+    }
+
+    .sidebar-nav .nav-list {
+        padding: 0 10px;
+    }
+    
+
+    .sidebar-nav .nav-link {
+        gap: 10px;
+        padding: 10px;
+        font-size: 0.94rem;
+    }
+
+    .sidebar-nav .nav-link .nav-icon {
+        font-size: 1.37rem;
+    }
+
+    .sidebar-nav .secondary-nav {
+        position: relative;
+        bottom: 0;
+        margin: 40px 0 30px;
+    }
+
+}

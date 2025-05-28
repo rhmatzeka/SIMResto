@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+    <link rel="website icon" type="png" href="images/icon-lamperie.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/menu.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#home" class="navbar-logo">
+        <img src="images/icon-lamperie.png" alt="" class="img-navbar"
+      /></a>
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="#location">Location</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+      <div class="navbar-extra">
+        <div class="dropdown">
+          <a href="" class="dropbtn"><i data-feather="phone"></i></a>
+          <div class="dropdown-content">
+            <a href="#menu">+62</a>
+            <a href="#beverage">+62</a>
+          </div>
+        </div>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        <a href="#" id="moon-btn" onclick="setDarkMode(true)">
+          <i data-feather="moon"></i
+        ></a>
+        <a
+          href="#"
+          id="sun-btn"
+          onclick="setDarkMode(false)"
+          style="display: none"
+        >
+          <i data-feather="sun"></i
+        ></a>
+        <a href="login.html"><i data-feather="user"></i></a>
+      </div>
+    </nav>
+
+    <div class="bg-image">
+      <h1>MENU</h1>
+    </div>
+
+    <div class="circular-categories-container">
+      <div class="circular-categories-row">
+        <div class="category-item-circle">
+          <a href="#MainCourse">
+            <img src="images/menu/Main-corse-circle.jpeg" alt="Main Course" />
+            <h5>Main Course</h5>
+          </a>
+        </div>
+        <div class="category-item-circle">
+          <a href="#Appetizer">
+            <img
+              src="images/menu/Appetizer/MozzarellaSticks.png"
+              alt="Appetizer"
+            />
+            <h5>Appetizer</h5>
+          </a>
+        </div>
+        <div class="category-item-circle">
+          <a href="#snacks">
+            <img
+              src="images/menu/snacks/f5b15dbb-8cf6-4b6b-8efd-0d7dba4c6e16.jpg"
+              alt="Snacks"
+            />
+            <h5>Snacks</h5>
+          </a>
+        </div>
+        <div class="category-item-circle">
+          <a href="#dessert">
+            <img src="images/menu/dessert&cemilan-circle.jpeg" alt="Dessert" />
+            <h5>Dessert</h5>
+          </a>
+        </div>
+        <div class="category-item-circle">
+          <a href="#NonCoffee">
+            <img
+              src="images/menu/Non coffee/banner,.jpg"
+              alt="Non-Coffee Drinks"
+            />
+            <h5>Non-Coffee</h5>
+          </a>
+        </div>
+        <div class="category-item-circle">
+          <a href="#coffee">
+            <img
+              src="images/menu/coffee-&-Non-Coffee-circle.jpeg"
+              alt="Coffee Drinks"
+            />
+            <h5>Coffee</h5>
+          </a>
+        </div>
+        <div class="category-item-circle">
+          <a href="#juice">
+            <img
+              src="images/menu/coffee-&-Non-Coffee-circle.jpeg"
+              alt="Juice Drinks"
+            />
+            <h5>Juice</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="MainCourse" id="MainCourse">MAIN COURSE</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Main Course/The T-Bone steak is a favorite cut of beef known….jpg"
+          alt="Steak Tenderloin"
+          class="menu-image"
+        />
+        <div class="menu-title">Steak Tenderloin 6oz</div>
+        <div class="menu-description">
+          A cut of beef taken from the center of the back, specifically along
+          the spine.
+        </div>
+        <div class="menu-price" data-base-price="43">$43.00</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Main Course/A Wagyu steak + duck fat fried truffle fries + Parmigiano-Reggiano + salad.jpg"
+          alt="Wagyu MB 5+ Striploin 7oz"
+          class="menu-image"
+        />
+        <div class="menu-title">Wagyu A5 6oz</div>
+        <div class="menu-description">
+          Imported Japanese Wagyu A5 steak served with sauce, vegetables, and
+          potatoes.
+        </div>
+        <div class="menu-price" data-base-price="240">$240.00</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Main Course/Spicy Honey Glazed Salmon 🍯🐟✨  This Spicy Honey….jpg"
+          alt="Garlic Salmon"
+          class="menu-image"
+        />
+        <div class="menu-title">Garlic Salmon 5oz</div>
+        <div class="menu-description">
+          Salmon perfectly combined with the strong and savory aroma and flavor
+          of garlic.
+        </div>
+        <div class="menu-price" data-base-price="30">$30.00</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Main Course/Juicy grilled sirloin steak with mashed potatoes….jpg"
+          alt="Sirloin Steak"
+          class="menu-image"
+        />
+        <div class="menu-title">Sirloin Steak</div>
+        <div class="menu-description">
+          A cut of beef taken from the lower back of a cow, specifically between
+          the short loin and the hip (round).
+        </div>
+        <div class="menu-price" data-base-price="27">$27.00</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="Appetizer" id="Appetizer">APPETIZER</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Appetizer/SpinachandArtichoke.png"
+          alt="Spinach and Artichoke Dip"
+          class="menu-image"
+        />
+        <div class="menu-title">Spinach and Artichoke Dip</div>
+        <div class="menu-description">
+          Served warm with tortilla chips, pita bread, or vegetable sticks for
+          dipping.
+        </div>
+        <div class="menu-price" data-base-price="9.7">$9.70</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Appetizer/BuffaloWings.png"
+          alt=" Buffalo Wings"
+          class="menu-image"
+        />
+        <div class="menu-title">Buffalo Wings</div>
+        <div class="menu-description">
+          Served with celery sticks and blue cheese or ranch dressing.
+        </div>
+        <div class="menu-price" data-base-price="10.7">$10.70</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Appetizer/MozzarellaSticks.png"
+          alt="Mozzarella Sticks"
+          class="menu-image"
+        />
+        <div class="menu-title">Mozzarella Sticks</div>
+        <div class="menu-description">
+          Served with marinara sauce for dipping.
+        </div>
+        <div class="menu-price" data-base-price="8.7">$8.70</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Appetizer/ShrimpCocktail.png"
+          alt="Shrimp Cocktail"
+          class="menu-image"
+        />
+        <div class="menu-title">Shrimp Cocktail</div>
+        <div class="menu-description">
+          Served in a glass with shrimp hooked on the rim and garnished with a
+          lemon wedge.
+        </div>
+        <div class="menu-price" data-base-price="12.1">$12.10</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="snacks" id="snacks">SNACKS</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/snacks/Daily Recipes.jpg"
+          alt="Candy Bars"
+          class="menu-image"
+        />
+        <div class="menu-title">Candy Bars</div>
+        <div class="menu-description">
+          A long, thin sweet food covered in chocolate.
+        </div>
+        <div class="menu-price" data-base-price="1.1">$1.10</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/snacks/cookis-oreo.jpg"
+          alt="Cookies oreo"
+          class="menu-image"
+        />
+        <div class="menu-title">Cookies Oreo</div>
+        <div class="menu-description">
+          Chocolate sandwich biscuits with a sweet cream filling in between.
+        </div>
+        <div class="menu-price" data-base-price="4.3">$4.30</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/snacks/chips.jpg"
+          alt="chips"
+          class="menu-image"
+        />
+        <div class="menu-title">Chips</div>
+        <div class="menu-description">Cheesecake with blueberry topping.</div>
+        <div class="menu-price" data-base-price="1.6">$1.60</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="dessert" id="dessert">DESSERT</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Desserts/Rich and Moist Chocolate Muffins_ A Chocoholic’s….jpg"
+          alt="Chocolate Muffin"
+          class="menu-image"
+        />
+        <div class="menu-title">Chocolate Muffin</div>
+        <div class="menu-description">
+          A small baked cake with a rich chocolate flavor. It has a dense and
+          soft texture.
+        </div>
+        <div class="menu-price" data-base-price="10.8">$10.80</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Desserts/1a7a9702-682a-4ee1-9179-95dfd127d587.jpg"
+          alt="Croissant"
+          class="menu-image"
+        />
+        <div class="menu-title">Croissant</div>
+        <div class="menu-description">
+          A buttery, flaky, viennoiserie pastry of Austrian and French origin,
+          named for its historical crescent shape.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Desserts/Classic Cheesecake [1_25 Hours].jpg"
+          alt="Cheesecake"
+          class="menu-image"
+        />
+        <div class="menu-title">Cheesecake</div>
+        <div class="menu-description">
+          Made with a soft, fresh cheese, cottage cheese, eggs, and sugar.
+        </div>
+        <div class="menu-price" data-base-price="7.5">$7.50</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Desserts/QUICK Pecan Cinnamon Rolls Recipe🥐🍯🌰🍂✨😊.jpg"
+          alt="Cinnamon Roll"
+          class="menu-image"
+        />
+        <div class="menu-title">Cinnamon Roll</div>
+        <div class="menu-description">
+          A sweet roll made from a rolled sheet of yeast-leavened dough onto
+          which a cinnamon and sugar mixture is sprinkled.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="minuman" id="NonCoffee">NON-COFFEE</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Non coffee/Indulge in the ultimate winter comfort with our….jpg"
+          alt="Hot Chocolate"
+          class="menu-image"
+        />
+        <div class="menu-title">Hot Chocolate</div>
+        <div class="menu-description">
+          A warm beverage made from shaved chocolate or cocoa powder melted with
+          heated milk or water, and usually includes a sweetener.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Non coffee/Creamy Oreo Milkshake Recipe.jpg"
+          alt="Milkshake"
+          class="menu-image"
+        />
+        <div class="menu-title">Oreo Milkshake</div>
+        <div class="menu-description">
+          A sweet and rich cold beverage made with a base of milk and ice cream
+          blended with Oreo cookies.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Non coffee/Vanilla Special Milkshake 🥤✨ Prep Time_ 5 minutes….jpg"
+          alt="Vanilla Milkshake"
+          class="menu-image"
+        />
+        <div class="menu-title">Vanilla Milkshake</div>
+        <div class="menu-description">
+          A cold beverage made by blending milk, vanilla ice cream, and vanilla
+          syrup.
+        </div>
+        <div class="menu-price" data-base-price="8.7">$8.70</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Coffee & Non Coffee/Coffe-Latte.jpeg"
+          alt="Smoothie"
+          class="menu-image"
+        />
+        <div class="menu-title">Smoothie</div>
+        <div class="menu-description">
+          A thick drink made by blending fruits or vegetables, often with
+          yogurt, milk, or ice.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="coffee" id="coffee">COFFEE</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Coffee/How to Make an Iced Americano better than Starbucks.jpg"
+          alt="Americano"
+          class="menu-image"
+        />
+        <div class="menu-title">Americano</div>
+        <div class="menu-description">
+          A coffee drink made by diluting an espresso shot with hot water.
+        </div>
+        <div class="menu-price" data-base-price="7.5">$7.50</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Coffee/Brown Sugar Shaken Espresso Recipe.jpg"
+          alt="Espresso"
+          class="menu-image"
+        />
+        <div class="menu-title">Espresso</div>
+        <div class="menu-description">
+          Coffee brewed by forcing a small amount of nearly boiling water under
+          pressure through finely-ground coffee beans.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Coffee & Non Coffee/Coffe-Latte.jpeg"
+          alt="Coffee Latte"
+          class="menu-image"
+        />
+        <div class="menu-title">Coffee Latte</div>
+        <div class="menu-description">
+          Espresso with a blend of milk and a thin layer of milk foam on top.
+        </div>
+        <div class="menu-price" data-base-price="5.4">$5.40</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/Coffee/Hot Coffee Capuccino Cup With Latte Art On Wood Table At Cafe _ Premium AI-generated image.jpg"
+          alt="Cappuccino"
+          class="menu-image"
+        />
+        <div class="menu-title">Cappuccino</div>
+        <div class="menu-description">
+          Consists of a blend of espresso, steamed milk, and a dense milk foam.
+        </div>
+        <div class="menu-price" data-base-price="10.8">$10.80</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="Juice" id="juice">JUICE</h1>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/jus/orange-juice.jpg"
+          alt="Orange Juice"
+          class="menu-image"
+        />
+        <div class="menu-title">Orange Juice</div>
+        <div class="menu-description">
+          Made from the pressing of carefully selected ripe oranges.
+        </div>
+        <div class="menu-price" data-base-price="3.5">$3.50</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/jus/Did you know that apple juice, made by pressing….jpg"
+          alt="Apple Juice"
+          class="menu-image"
+        />
+        <div class="menu-title">Apple Juice</div>
+        <div class="menu-description">
+          Pure apple juice offers a crisp and refreshing sweetness from fresh
+          apples.
+        </div>
+        <div class="menu-price" data-base-price="4.3">$4.30</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/jus/Cranberry Juice.jpg"
+          alt="Cranberry Juice"
+          class="menu-image"
+        />
+        <div class="menu-title">Cranberry Juice</div>
+        <div class="menu-description">
+          Often with a touch of natural sweetener or other fruit juices to
+          balance its tartness.
+        </div>
+        <div class="menu-price" data-base-price="4.3">$4.30</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="menu-card" onclick="toggleDescription(this)">
+        <img
+          src="assets menu makanan & minuman/jus/jus nanas.png"
+          alt="Pineapple Juice"
+          class="menu-image"
+        />
+        <div class="menu-title">Pineapple Juice</div>
+        <div class="menu-description">
+          A tropical sensation with a sweet, tangy, and very refreshing taste.
+        </div>
+        <div class="menu-price" data-base-price="4.9">$4.90</div>
+        <div class="order-controls" onclick="event.stopPropagation()">
+          <button class="minus" onclick="changeOrder(this, -1)">-</button>
+          <span class="order-quantity">0</span>
+          <button class="plus" onclick="changeOrder(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="checkout-card"
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label="Checkout summary"
+    >
+      <h2>Your Order</h2>
+      <div id="checkout-items"></div>
+      <div id="checkout-total">Total: $0.00</div>
+      <button id="checkout-button" onclick="proceedToCheckout()">
+        Checkout
+      </button>
+    </div>
+    <script>
+      feather.replace();
+    </script>
+    <script src="js/menu.js"></script>
+  </body>
+</html>

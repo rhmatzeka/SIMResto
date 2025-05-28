@@ -1,0 +1,24 @@
+body{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+}
+
+.form-login{
+    max-width: 330px;
+    margin: auto;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.8);
+    background-color: rgba(114, 111, 111, 0.2);
+    padding: 20px;
+}
+
+.container-fluid h3, p {
+    color: #f5f5f5;
+}
+
+.form-login .daftar {
+    text-decoration: none;
+}
