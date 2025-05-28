@@ -1,3 +1,8 @@
+<?php 
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,27 +32,32 @@
         <a href="#contact">Contact Us</a>
       </div>
       <div class="navbar-extra">
-        <div class="dropdown">
-          <a href="" class="dropbtn"><i data-feather="phone"></i></a>
-          <div class="dropdown-content">
+    <div class="dropdown">
+        <a href="" class="dropbtn"><i data-feather="phone"></i></a>
+        <div class="dropdown-content">
             <a href="#menu">+62</a>
             <a href="#beverage">+62</a>
-          </div>
         </div>
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-        <a href="#" id="moon-btn" onclick="setDarkMode(true)">
-          <i data-feather="moon"></i
-        ></a>
-        <a
-          href="#"
-          id="sun-btn"
-          onclick="setDarkMode(false)"
-          style="display: none"
-        >
-          <i data-feather="sun"></i
-        ></a>
-        <a href="login.html"><i data-feather="user"></i></a>
-      </div>
+    </div>
+    <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+    <a href="#" id="moon-btn" onclick="setDarkMode(true)">
+        <i data-feather="moon"></i>
+    </a>
+    <a href="#" id="sun-btn" onclick="setDarkMode(false)" style="display: none">
+        <i data-feather="sun"></i>
+    </a>
+    <?php if ($isLoggedIn): ?>
+        <div class="dropdown">
+            <a href="#" class="dropbtn"><i data-feather="user"></i></a>
+            <div class="dropdown-content">
+                <a href="#">My Profile</a>
+                <a href="logout.php">Logout</a>
+            </div>
+        </div>
+    <?php else: ?>
+        <a href="login.php"><i data-feather="user"></i></a>
+    <?php endif; ?>
+</div>
     </nav>
 
     <section class="hero" id="home">
