@@ -2,13 +2,15 @@
 require_once 'function.php';
 redirectIfLoggedIn();
 
+// Inisialisasi variabel
+$errors = [];
+$email = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    // Validate inputs
-    $errors = [];
-    
+    // Validasi input
     if (empty($email)) {
         $errors[] = 'Email is required';
     }

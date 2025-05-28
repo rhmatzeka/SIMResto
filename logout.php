@@ -1,13 +1,13 @@
 <?php
 require_once 'function.php';
 
-// Unset all session variables
+// Hapus semua data session
 $_SESSION = array();
 
-// Destroy the session
+// Hancurkan session
 session_destroy();
 
-// Redirect to login page
-header('Location: login.php');
+// Redirect ke halaman login
+header('Location: /index.php');
 exit();
 ?>
