@@ -1,51 +1,62 @@
 <?php
-require_once 'function.php';
-redirectIfLoggedIn();
+session_start();
+require_once 'koneksi.php';
 
-// Inisialisasi variabel
-$errors = [];
-$email = '';
+if (isset($_SESSION['user'])) {
+    header("Location: dashboard.php");
+    exit();
+}
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email']);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validasi input
-    if (empty($email)) {
-        $errors[] = 'Email is required';
-    }
-    
-    if (empty($password)) {
-        $errors[] = 'Password is required';
-    }
-    
-    if (empty($errors)) {
-        try {
-            // Check if user exists
-            $stmt = $pdo->prepare("SELECT id, name, email, password FROM users WHERE email = ?");
-            $stmt->execute([$email]);
+    // Ambil data user berdasarkan email
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $user_data = $result->fetch_assoc();
+
+        // --- GANTI BLOK DI BAWAH INI ---
+        
+        // Verifikasi password
+        if (password_verify($password, $user_data['password'])) {
+            // JIKA PASSWORD BENAR, SIMPAN DATA PENTING KE SESSION
             
-            if ($stmt->rowCount() === 1) {
-                $user = $stmt->fetch();
-                
-                // Verify password
-                if (password_verify($password, $user['password'])) {
-                    // Set session and redirect
-                    $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['user_email'] = $user['email'];
-                    $_SESSION['user_name'] = $user['name'];
-                    
-                    header('Location: index.php');
-                    exit();
-                } else {
-                    $errors[] = 'Invalid email or password';
-                }
+            // Simpan semua data user ke dalam satu session
+            $_SESSION['user'] = $user_data;
+
+            // PENTING: Simpan juga role ke session terpisah untuk kemudahan pengecekan
+            $_SESSION['role'] = $user_data['role'];
+
+            // Logika redirect yang sudah kita perbaiki sebelumnya
+            if ($user_data['role'] == 'admin') {
+                header('Location: admin/admin_dashboard.php');
+                exit();
+            } elseif ($user_data['role'] == 'kasir') {
+                header('Location: kasir/orders_admin.php');
+                exit();
+            } elseif ($user_data['role'] == 'waiters') {
+                header('Location: waiters/dashboard_waiters.php');
+                exit();
+            } elseif ($user_data['role'] == 'kitchen') {
+                header('Location: chef/chef_dashboard.php');
+                exit();
+            } elseif ($user_data['role'] == 'manajer') {
+                header('Location: manajer/dashboard_manajer.php');
+                exit();
             } else {
-                $errors[] = 'Invalid email or password';
+                header('Location: menulogin.php');
+                exit();
             }
-        } catch (PDOException $e) {
-            $errors[] = 'Database error: ' . $e->getMessage();
+        } else {
+            $error = "Email atau Password salah!";
         }
+    } else {
+        $error = "Email atau Password salah!";
     }
 }
 ?>
@@ -65,12 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="form-login" method="POST" action="login.php">
             <h3 class="fw-normal text-center">Login</h3>
             
-            <?php if (!empty($errors)): ?>
-                <div class="alert alert-danger">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
+            <?php if(isset($error)): ?>
+                <div class="alert alert-danger"><?php echo $error; ?></div>
             <?php endif; ?>
             
             <div class="form-floating mb-2">

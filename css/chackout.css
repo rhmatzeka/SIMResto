@@ -1,175 +1,214 @@
 body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
 
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+.container {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 
-        .main-header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
+.main-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
 
-        .main-header h1 {
-            margin: 0;
-            color: #333;
-        }
+.main-header h1 {
+  margin: 0;
+  color: #333;
+}
 
-        #checkout-details h2 {
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #555;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
+#checkout-details h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
 
-        #ordered-items-container .items-header,
-        #ordered-items-container .item-details-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
+#ordered-items-container .items-header,
+#ordered-items-container .item-details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
 
-        #ordered-items-container .items-header {
-            font-weight: bold;
-            background-color: #f9f9f9;
-            padding: 10px; /* Added padding for header */
-            border-radius: 4px 4px 0 0; /* Rounded corners for header top */
-        }
-        
-        #ordered-items-container .item-details-row:last-child {
-            border-bottom: none;
-        }
+#ordered-items-container .items-header {
+  font-weight: bold;
+  background-color: #f9f9f9;
+  padding: 10px; /* Added padding for header */
+  border-radius: 4px 4px 0 0; /* Rounded corners for header top */
+}
 
-        .item-name { flex-basis: 50%; text-align: left; }
-        .item-qty { flex-basis: 20%; text-align: center; }
-        .item-price { flex-basis: 30%; text-align: right; font-weight: bold; }
+#ordered-items-container .item-details-row:last-child {
+  border-bottom: none;
+}
 
+.item-name {
+  flex-basis: 50%;
+  text-align: left;
+}
+.item-qty {
+  flex-basis: 20%;
+  text-align: center;
+}
+.item-price {
+  flex-basis: 30%;
+  text-align: right;
+  font-weight: bold;
+}
 
-        #empty-cart-message {
-            text-align: center;
-            padding: 20px;
-            color: #777;
-            font-style: italic;
-        }
+#empty-cart-message {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-style: italic;
+}
 
-        #total-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid #333;
-        }
+#total-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #333;
+}
 
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .total-label { color: #333; }
-        .total-value { color: #d9534f; } 
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.total-label {
+  color: #333;
+}
+.total-value {
+  color: #d9534f;
+}
 
-        .payment-options > div { /* Direct child divs for payment methods */
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .payment-options label {
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-        .payment-options .payment-details {
-            display: none; 
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .payment-options .payment-details p {
-            margin: 5px 0;
-        }
-        .qr-placeholder {
-            width: 120px;
-            height: 120px;
-            background-color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-            border: 1px dashed #ccc;
-            color: #777;
-        }
+/* discount */
+/* Tambahkan ke css/chackout.css */
+#discount-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px dashed #555;
+  border-radius: 8px;
+}
+.discount-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+#discount-code-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#discount-message {
+  margin-top: 10px;
+  font-weight: 500;
+}
+/* end discount */
 
-        #payment-error-message {
-            color: red;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        }
+.payment-options > div {
+  /* Direct child divs for payment methods */
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.payment-options label {
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.payment-options .payment-details {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.payment-options .payment-details p {
+  margin: 5px 0;
+}
+.qr-placeholder {
+  width: 120px;
+  height: 120px;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  border: 1px dashed #ccc;
+  color: #777;
+}
 
-        .actions-section {
-            margin-top: 30px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
+#payment-error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
 
-        .button {
-            display: inline-block;
-            padding: 12px 25px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, opacity 0.3s ease;
-        }
+.actions-section {
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
 
-        .button-confirm {
-            background-color: #5cb85c; 
-            color: white;
-        }
-        .button-confirm:disabled {
-            background-color: #aaa;
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        .button-confirm:not(:disabled):hover {
-            background-color: #4cae4c;
-        }
+.button {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
 
-        .button-back {
-            background-color: #f0ad4e; 
-            color: white;
-        }
-        .button-back:hover {
-            background-color: #ec971f;
-        }
+.button-confirm {
+  background-color: #5cb85c;
+  color: white;
+}
+.button-confirm:disabled {
+  background-color: #aaa;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.button-confirm:not(:disabled):hover {
+  background-color: #4cae4c;
+}
 
-        .main-footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            font-size: 0.9em;
-            color: #777;
-        }
+.button-back {
+  background-color: #f0ad4e;
+  color: white;
+}
+.button-back:hover {
+  background-color: #ec971f;
+}
+
+.main-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-size: 0.9em;
+  color: #777;
+}

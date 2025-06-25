@@ -1,13 +1,7 @@
 <?php
-require_once 'function.php';
-
-// Hapus semua data session
-$_SESSION = array();
-
-// Hancurkan session
+session_start();
+session_unset();
 session_destroy();
-
-// Redirect ke halaman login
-header('Location: /index.php');
+header("Location: index.php");
 exit();
 ?>

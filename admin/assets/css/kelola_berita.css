@@ -1,0 +1,34 @@
+.form-berita {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+.form-berita input,
+.form-berita textarea,
+.form-berita button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.form-berita button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.tabel-berita {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabel-berita th,
+.tabel-berita td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.tabel-berita img {
+  max-width: 100px;
+}

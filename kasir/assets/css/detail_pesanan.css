@@ -1,0 +1,146 @@
+.page-body {
+  font-family: "Poppins", sans-serif;
+}
+.order-details-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.detail-section {
+  margin-bottom: 25px;
+}
+.detail-section h3 {
+  border-bottom: 2px solid #f4f4f4;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 5px;
+  font-size: 0.95rem;
+}
+.detail-grid dt {
+  font-weight: 600;
+  color: #555;
+}
+.detail-grid dd {
+  margin: 0;
+}
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+.items-table thead tr {
+  background-color: #f8f9fa;
+}
+.items-table th,
+.items-table td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+.items-table .text-right {
+  text-align: right;
+}
+.total-row td {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.action-buttons {
+    margin-top: 30px;
+    display: flex; /* Menggunakan flexbox untuk alignment yang lebih baik */
+    gap: 10px; /* Memberi jarak antar tombol */
+}
+
+/* Style dasar untuk semua tombol di area aksi */
+.action-buttons .btn {
+    color: white;
+    padding: 12px 22px;
+    text-decoration: none;
+    border-radius: 8px; /* Sedikit lebih melengkung */
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex; /* Agar ikon dan teks sejajar */
+    align-items: center;
+    gap: 8px; /* Jarak antara ikon dan teks */
+    transition: all 0.3s ease; /* Kunci untuk animasi yang halus */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Bayangan awal */
+}
+
+/* Tombol Cetak / Simpan ke PDF yang baru dan menarik */
+.action-buttons .btn-print {
+    background: linear-gradient(45deg, #3498db, #2980b9); /* Latar belakang gradient */
+}
+
+/* Efek saat mouse diarahkan ke tombol (hover) */
+.action-buttons .btn:hover {
+    transform: translateY(-3px); /* Tombol sedikit terangkat */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Bayangan menjadi lebih besar */
+}
+
+.action-buttons .btn-print:hover {
+    background: linear-gradient(45deg, #5dade2, #3498db); /* Warna gradient sedikit lebih cerah */
+}
+
+/* Efek saat tombol ditekan (active) */
+.action-buttons .btn:active {
+    transform: translateY(-1px); /* Tombol sedikit turun kembali */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Bayangan kembali normal */
+}
+
+/* Style untuk tombol kembali */
+.action-buttons .btn-back {
+    background-color: #7f8c8d;
+}
+.action-buttons .btn-back:hover {
+    background-color: #95a5a6;
+}
+
+/* -- CSS KHUSUS UNTUK MENCETAK (VERSI PERBAIKAN) -- */
+@media print {
+  /* Sembunyikan elemen yang tidak perlu dicetak secara spesifik */
+  .sidebar,
+  .header,
+  .action-buttons {
+    display: none !important;
+  }
+
+  /* Atur ulang layout utama agar konten cetak memenuhi halaman */
+  body,
+  .main-content,
+  .content-area {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .order-details-container {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Tampilkan kop surat khusus untuk cetak */
+  .header-print {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .header-print h2 {
+    margin: 0;
+  }
+  .header-print p {
+    margin: 5px 0 0 0;
+  }
+}

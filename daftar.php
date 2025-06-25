@@ -1,63 +1,59 @@
 <?php
-require_once 'function.php';
-redirectIfLoggedIn();
+require_once 'koneksi.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
+$error = ''; // Variabel untuk menampung pesan error
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil data dari form
+    $name     = $_POST['name'];
+    $email    = $_POST['email'];
     $password = $_POST['password'];
-    $phone = trim($_POST['phone']);
+    $confirm_password = $_POST['confirm_password'];
+    $phone    = $_POST['phone'];
 
-    // Validate inputs
-    $errors = [];
-    
-    if (empty($name)) {
-        $errors[] = 'Name is required';
-    }
-    
-    if (empty($email)) {
-        $errors[] = 'Email is required';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Invalid email format';
-    }
-    
-    if (empty($password)) {
-        $errors[] = 'Password is required';
-    } elseif (strlen($password) < 6) {
-        $errors[] = 'Password must be at least 6 characters';
-    }
-    
-    if (empty($errors)) {
-        try {
-            // Check if email already exists
-            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-            $stmt->execute([$email]);
-            
-            if ($stmt->rowCount() > 0) {
-                $errors[] = 'Email already registered';
-            } else {
-                // Hash password
-                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                
-                // Insert new user
-                $stmt = $pdo->prepare("INSERT INTO users (name, email, password, phone) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$name, $email, $hashedPassword, $phone]);
-                
-                // Get the new user ID
-                $userId = $pdo->lastInsertId();
-                
-                // Set session and redirect
-                $_SESSION['user_id'] = $userId;
-                $_SESSION['user_email'] = $email;
-                $_SESSION['user_name'] = $name;
-                
-                header('Location: index.php');
+    // 1. Validasi Password
+    if ($password !== $confirm_password) {
+        $error = "Password dan Konfirmasi Password tidak cocok!";
+    } else {
+        // 2. Cek apakah email sudah ada (menggunakan prepared statement)
+        $stmt_check = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt_check->bind_param("s", $email);
+        $stmt_check->execute();
+        $stmt_check->store_result();
+
+        if ($stmt_check->num_rows > 0) {
+            $error = "Email sudah terdaftar!";
+        } else {
+            // 3. Jika semua aman, masukkan data pengguna (tanpa member_id dulu)
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt_insert = $conn->prepare("INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, 'user')");
+            $stmt_insert->bind_param("ssss", $name, $email, $hashed_password, $phone);
+
+            if ($stmt_insert->execute()) {
+                // 4. Ambil ID dari pengguna yang baru saja dibuat
+                $new_user_id = $conn->insert_id;
+
+                // 5. Buat Member ID yang unik berdasarkan ID tersebut
+                $tahun = date('Y');
+                $member_id = "LP-" . $tahun . "-" . str_pad($new_user_id, 4, '0', STR_PAD_LEFT);
+
+                // 6. Update baris pengguna baru dengan Member ID
+                $stmt_update = $conn->prepare("UPDATE users SET member_id = ? WHERE id = ?");
+                $stmt_update->bind_param("si", $member_id, $new_user_id);
+                $stmt_update->execute();
+                $stmt_update->close();
+
+                // 7. Arahkan ke halaman login dengan pesan sukses
+                header("Location: login.php?status=sukses_daftar");
                 exit();
+            } else {
+                $error = "Pendaftaran gagal, terjadi kesalahan pada server.";
             }
-        } catch (PDOException $e) {
-            $errors[] = 'Database error: ' . $e->getMessage();
+            $stmt_insert->close();
         }
+        $stmt_check->close();
     }
+    $conn->close();
 }
 ?>
 
@@ -73,17 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container-fluid">
-        <form class="form-login" method="POST" action="register.php">
+        <form class="form-login" method="POST" action="daftar.php" onsubmit="return validateForm()">
             <h3 class="fw-normal text-center">Create Account</h3>
-            
-            <?php if (!empty($errors)): ?>
-                <div class="alert alert-danger">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-            
             <div class="form-floating mb-2">
                 <input type="text" class="form-control" name="name" placeholder="Full Name" required value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
                 <label>Full Name</label>
@@ -93,8 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>E-mail</label>
             </div>
             <div class="form-floating mb-2">
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                 <label>Password</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input id="confirm_password" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+                <label>Confirm Password</label>
             </div>
             <div class="form-floating mb-2">
                 <input type="tel" class="form-control" name="phone" placeholder="Phone Number" value="<?php echo isset($phone) ? htmlspecialchars($phone) : ''; ?>">
@@ -110,5 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/daftar.js"></script>
 </body>
 </html>

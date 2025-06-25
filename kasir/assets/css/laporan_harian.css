@@ -1,0 +1,22 @@
+        .report-container { background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .date-selector-form { display: flex; gap: 10px; align-items: center; margin-bottom: 25px; }
+        .date-selector-form input[type="date"] { padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Poppins'; }
+        .date-selector-form button { padding: 9px 15px; border: none; background-color: #2c3e50; color: white; border-radius: 5px; cursor: pointer; }
+        .report-section { margin-top: 30px; }
+        .report-section h3 { border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 15px; }
+        .summary-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: center; }
+        .summary-card { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .summary-card h4 { margin: 0 0 10px 0; color: #555; }
+        .summary-card p { margin: 0; font-size: 1.8rem; font-weight: 600; color: #2c3e50; }
+        .detail-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .detail-table th, .detail-table td { padding: 10px; border: 1px solid #e0e0e0; text-align: left; }
+        .detail-table thead { background-color: #f2f2f2; }
+        .action-buttons { margin-top: 30px; }
+        .action-buttons .btn-print { background-color: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+
+        @media print {
+            .sidebar, .header, .date-selector-form, .action-buttons { display: none !important; }
+            body, .main-content, .content-area { margin: 0 !important; padding: 0 !important; }
+            .report-container { box-shadow: none; border: 1px solid #ccc; }
+            .print-header { display: block !important; text-align: center; margin-bottom: 20px; }
+        }

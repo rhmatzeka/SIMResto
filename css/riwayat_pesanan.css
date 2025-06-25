@@ -1,0 +1,194 @@
+/* Styling untuk elemen-elemen spesifik riwayat pesanan */
+
+/* Mengatur box-sizing secara universal untuk perhitungan ukuran yang lebih konsisten */
+* {
+    box-sizing: border-box;
+}
+
+/* Hapus aturan body dan .container ini jika profil.css sudah mengaturnya.
+   Biasanya, file include tidak perlu mengatur gaya body atau container utama.
+   Jika Anda yakin tidak ada konflik dan ingin tetap ada, biarkan saja.
+   Saya akan mengomentarinya untuk menjaga kebersihan.
+*/
+/*
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 16px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+*/
+
+/* Ini adalah KUNCI untuk scrollbar */
+.orders-container {
+    max-height: 400px; /* Sesuaikan nilai ini agar sesuai dengan 2 kartu pesanan + margin */
+    overflow-y: auto; /* Aktifkan scrollbar vertikal jika konten melebihi max-height */
+    padding-right: 15px; /* Memberikan ruang agar scrollbar tidak menutupi konten */
+    box-sizing: border-box; /* Penting untuk perhitungan ukuran */
+    /* Opsional: Tambahkan border/background jika ingin visualisasi area scroll */
+     border: 2px solid #555;
+     background-color: #2b2b2b; 
+}
+
+/* Styling untuk setiap kartu pesanan */
+.order-card {
+    background-color: #333; /* Darker background for the card */
+    border-radius: 8px;
+    margin-bottom: 20px; /* Jarak antar kartu */
+    padding: 15px;
+    color: #eee; /* Light text color */
+    /* Pastikan tidak ada properti height tetap di sini yang akan mengganggu */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Shadow tipis agar lebih menonjol */
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.order-top h4 {
+    font-size: 1rem; /* Ubah ke rem untuk konsistensi */
+    font-weight: bold;
+    margin: 0;
+    color: #f8f9fa; /* Lighter heading color */
+}
+
+.order-date {
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+.order-body {
+    display: flex;
+    align-items: center; /* Menyelaraskan item vertikal di tengah */
+}
+
+.order-item-image {
+    width: 80px; /* Ukuran yang lebih konsisten */
+    height: 80px; /* Ukuran yang lebih konsisten */
+    border-radius: 4px;
+    object-fit: cover; /* Penting untuk menjaga rasio aspek gambar */
+    margin-right: 15px;
+    border: 1px solid #555;
+}
+
+.order-content {
+    flex-grow: 1;
+    display: flex; /* Gunakan flex untuk p dan order-bottom */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.order-content p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.order-content .price {
+    font-weight: bold;
+    color: #ffc107; /* Highlight color for price */
+}
+
+.order-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #555;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.85em;
+    text-transform: capitalize;
+    /* margin-right: 20px; <--- Hapus ini, karena status spesifik akan memiliki gaya yang lebih spesifik */
+}
+
+/* Status colors (lebih spesifik dan konsisten) */
+.status.pending {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.status.completed {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.status.cancelled { /* Perbaiki ejaan 'canceled' jika di DB menggunakan 'cancelled' */
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Hapus aturan status.done dan status.canceled yang lama jika sudah diganti dengan .status.completed dan .status.cancelled */
+/* .order-status.done {
+    color: #43a047;
+    font-size: 20px;
+}
+.order-status.canceled {
+    color: #e53935;
+} */
+
+
+.btn {
+    background-color: #007bff; /* Warna tombol utama yang konsisten */
+    color: white;
+    padding: 8px 15px; /* Padding yang konsisten dengan profil.css */
+    border: none;
+    border-radius: 5px; /* Radius yang konsisten */
+    cursor: pointer;
+    font-size: 0.9em; /* Ukuran font yang konsisten */
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Hover state yang konsisten */
+}
+
+/* Hapus .btn.full jika tidak lagi digunakan */
+/* .btn.full {
+    width: 100%;
+    margin-top: 20px;
+} */
+
+/* Hapus elemen-elemen ini jika tidak digunakan dalam riwayat_pesanan.php atau sudah diatur di profil.css */
+/*
+section {
+    margin-bottom: 16px;
+}
+section h3 {
+    margin-bottom: 6px;
+    font-size: 16px;
+    color: #333;
+}
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+*/

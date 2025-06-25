@@ -1,64 +1,330 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+:root {
+  --primary-color: #3366ff;
+  --accent-color: #333333; /* Warna hitam lebih terang */
+  --bg-color: #1a1a1a; /* Warna hitam lebih gelap */
+  --text-color: #ffffff; /* Teks default untuk elemen umum yang gelap */
+  --border-radius: 16px;
+  --shadow: 0 0 20px rgba(40, 167, 69, 0.7);
+}
+
+/* **PERBAIKAN AGRESIVE UNTUK LATAR BELAKANG HITAM DI LUAR CARD PROFIL** */
+html {
+  background-color: #000000 !important; /* Sangat penting: atur HTML ke hitam */
+}
+
 body {
-    background: #f5f5f5;
-    margin-top: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .ui-w-80 {
-    width: 80px !important;
-    height: auto;
-  }
-  
-  .card {
-    background-clip: padding-box;
-    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
-  }
-  
-  .row-bordered {
-    overflow: hidden;
-  }
-  
-  .btn {
-    cursor: pointer;
-  }
-  
-  .btn-default {
-    border-color: rgba(24, 28, 33, 0.1);
-    background: transparent;
-    color: #4E5155;
-  }
-  
-  .btn-outline-primary {
-    border-color: #26B4FF;
-    background: transparent;
-    color: #26B4FF;
-  }
-  
-  label.btn {
-    margin-bottom: 0;
-  }
-  
-  .text-light {
-    color: #babbbc !important;
-  }
-  
-  .account-settings-fileinput {
-    position: absolute;
-    visibility: hidden;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-  }
-  
-  /* Sidebar links */
-  .account-settings-links .list-group-item {
-    padding: 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-  }
-  
-  .account-settings-links .list-group-item.active {
-    font-weight: bold !important;
-    background: transparent !important;
-    color: #4E5155 !important;
-  }
-  
+  background-color: #000000 !important; /* Sangat penting: atur BODY ke hitam */
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh; /* Ubah dari height ke min-height agar bisa scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container utama yang membungkus seluruh profil card */
+.container.light-style.flex-grow-1.container-p-y {
+  background-color: transparent !important;
+  border: 1px solid rgb(40, 167, 69);
+  /* Mengatur border-radius keseluruhan card */
+  border-top-left-radius: var(--border-radius) !important;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius) !important;
+  overflow: visible; /* Ubah dari hidden ke visible agar bisa scroll */
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  flex-grow: 1;
+}
+
+/* **Tambahkan CSS ini untuk header yang berisi logo dan judul** */
+.header-with-logo {
+  display: flex; /* Menggunakan Flexbox */
+  align-items: center; /* Menyelaraskan item secara vertikal di tengah */
+  justify-content: space-between; /* Mendorong item ke ujung-ujung kontainer */
+  margin-bottom: 15px; /* Memberi sedikit jarak ke konten di bawahnya */
+  padding-left: 15px; /* Sesuaikan dengan margin-left judul sebelumnya */
+  padding-right: 15px; /* Tambahkan padding kanan agar tidak terlalu mepet */
+}
+
+.img-logo {
+  height: 3.5rem;
+  width: auto; /* Ubah width menjadi auto agar proporsional */
+  /* margin-right: 1rem; <- Hapus ini, karena space-between sudah menangani jarak */
+  object-fit: contain; /* Gunakan contain agar logo tidak terpotong */
+  object-position: center;
+}
+
+/* Judul "Account Profile" */
+.font-weight-bold.py-3.mb-4 {
+  color: var(--text-color);
+  text-align: right; /* Pastikan teks judul rata kanan */
+  /* margin-left: 0; <- Hapus ini, tidak diperlukan dengan space-between */
+  margin-bottom: 0 !important; /* Hapus margin-bottom default Bootstrap agar sejajar */
+  padding-top: 0 !important; /* Hapus padding-top default Bootstrap */
+  padding-bottom: 0 !important; /* Hapus padding-bottom default Bootstrap */
+  /* flex-grow: 1; <- Hapus ini jika justify-content: space-between sudah digunakan, karena judul tidak perlu mengambil sisa ruang */
+}
+
+/* Kartu utama yang berisi sidebar dan konten */
+.card.overflow-hidden {
+  border: none;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  background-color: transparent !important;
+  display: flex;
+  flex-grow: 1;
+}
+
+/* Row (kolom sidebar dan kolom konten) */
+.row.no-gutters.row-bordered.row-border-light {
+  border-radius: 0;
+  background-color: transparent !important;
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* Kolom Sidebar */
+.col-md-3.pt-0 {
+  background-color: transparent !important;
+  /* border: 1px solid rgb(40, 167, 69); */
+  display: flex;
+  flex-direction: column;
+  padding-right: 0 !important;
+}
+
+/* Header Profil di Sidebar (Background Hitam) */
+.profile-sidebar-header {
+  background-color: var(--bg-color);
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.user-profile-img-sidebar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.user-name-sidebar {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.user-contact-info-sidebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.user-email-sidebar,
+.user-phone-sidebar {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.user-email-sidebar + .user-phone-sidebar::before {
+  content: " | ";
+  color: #ccc;
+  margin: 0 5px;
+}
+
+/* Garis Pemisah (HR) di bawah Header Profil */
+hr.my-0 {
+  margin: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #2b2b2b;
+  height: 1px;
+  z-index: 1;
+}
+
+/* Daftar Link Menu Sidebar */
+.list-group-flush.account-settings-links {
+  background-color: var(--bg-color);
+  padding: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  /* border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius); */
+  margin-top: 0;
+  flex-grow: 1;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+
+/* PERBAIKAN BUTTON TEKS JELAS */
+.list-group-flush .list-group-item {
+  padding: 12px 16px;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s;
+  margin-bottom: 2px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.list-group-flush .list-group-item:hover {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.list-group-flush .list-group-item.active {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  font-weight: 600;
+  border-color: var(--primary-color) !important;
+}
+
+/* Kolom Konten Utama (Tab Content) */
+.col-md-9 {
+  background-color: var(--accent-color);
+  /* border: 1px solid rgb(40, 167, 69); */
+  /* color: #000000; */
+  /* border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius); */
+  height: auto;
+  flex-grow: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.col-md-9 .tab-content {
+  border-radius: 0;
+  /* height: 100%; <- Hapus atau ubah ini */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* Tambahkan min-height agar selalu ada ruang */
+  min-height: 250px; /* Contoh min-height, sesuaikan jika perlu */
+}
+
+/* PERBAIKAN ISI TAB MEMENUHI SPACE */
+.tab-pane.fade {
+  /* height: 100%; <- Hapus atau ubah ini */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.col-md-9 .card-body {
+  background-color: var(--accent-color);
+  padding: 1.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* Tambahkan padding-bottom agar ada ruang di bawah konten */
+  padding-bottom: 20px;
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+}
+
+/* Agar form-group memenuhi lebar dan input tidak terlalu kecil */
+.form-group {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form-group .form-control {
+  width: 100%;
+  background-color: var(--accent-color);
+  color: black;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+}
+
+.form-group .form-control:focus {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(51, 102, 255, 0.25);
+}
+
+.form-group .form-label {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Styling untuk tombol */
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #254edb;
+}
+
+.btn-default {
+  background-color: #dc3545 !important;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-default:hover {
+  background-color: #c82333 !important;
+  color: var(--text-color);
+}
+
+/* **PERBAIKAN POSISI TOMBOL SIMPAN/BATAL** */
+#saveCancelButtons {
+  margin-top: auto; /* Mendorong tombol ke bagian bawah card-body jika menggunakan flex */
+  padding: 15px; /* Beri padding agar tidak mepet ke tepi */
+  background-color: var(
+    --accent-color
+  ); /* Pastikan background-nya sama dengan tab */
+  border-bottom-left-radius: var(--border-radius); /* Ikuti radius card */
+  border-bottom-right-radius: var(--border-radius); /* Ikuti radius card */
+  display: flex; /* Gunakan flexbox untuk tombol */
+  justify-content: flex-end; /* Dorong tombol ke kanan */
+  gap: 10px; /* Beri jarak antar tombol */
+  /* Pastikan z-index jika ada elemen lain yang menimpa */
+  position: relative;
+  z-index: 10;
+}
+
+/* Perbaikan untuk alert messages */
+.alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+.alert-success {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}

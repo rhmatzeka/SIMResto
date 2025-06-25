@@ -1,0 +1,39 @@
+.form-diskon {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+.form-diskon input,
+.form-diskon select,
+.form-diskon button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.form-diskon button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.tabel-diskon {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabel-diskon th,
+.tabel-diskon td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.status-aktif {
+  color: green;
+  font-weight: bold;
+}
+.status-tidak-aktif {
+  color: red;
+  font-weight: bold;
+}

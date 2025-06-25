@@ -1,8 +1,32 @@
+:root {
+  --primary: #a0c878;
+  --bg: black;
+  --bgsecondary: white;
+}
+
 * {
   padding: 0;
   margin: o;
   box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* background-image: url("assets menu makanan & minuman/snacks/9415f027-4d0f-4a3c-b7db-de681e6dc10a.jpg"); */
+}
+
+/* navbar */
 
 .navbar {
   display: flex;
@@ -98,16 +122,11 @@
 
 .navbar .navbar-extra a:hover {
   color: var(--primary);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-/* end navbar */
 
-body {
-  font-family: "Segoe UI", sans-serif;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: #050505;
-  /* background-image: url("assets menu makanan & minuman/snacks/9415f027-4d0f-4a3c-b7db-de681e6dc10a.jpg"); */
+#hamburger {
+  display: none;
 }
 
 .bg-image {
@@ -117,6 +136,10 @@ body {
   margin-top: 100px;
   padding: 60px;
   margin-bottom: 30px;
+  text-align: center;
+}
+
+.Discount {
   text-align: center;
 }
 
@@ -137,8 +160,8 @@ body {
   text-align: center;
 }
 
-.minuman {
-  background-image: url("../images/menu/Coffee & Non Coffee/banner-minuman.jpeg");
+.non-coffee {
+  background-image: url("../images/menu/Non-Coffee/banner-non-coffee.jpeg");
   padding: 100px;
   background-size: cover;
   margin-bottom: 30px;
@@ -158,7 +181,7 @@ body {
 }
 
 .dessert {
-  background-image: url("../images/menu/Desserts/1a7a9702-682a-4ee1-9179-95dfd127d587.jpg");
+  background-image: url("../images/menu/Dessert/Premium_Photo_Mix_of_nuts_on_wooden_bowl_on_light_background.jpg");
   padding: 100px;
   background-size: cover;
   margin-bottom: 30px;
@@ -168,7 +191,7 @@ body {
 }
 
 .snacks {
-  background-image: url("/images/menu/snacks/Pizza Cartoon Yellow Poster Banner Background, Food, Snack, Sky Background Image And Wallpaper for Free Download.jpg");
+  background-image: url("../images/menu/snacks/Pizza Cartoon Yellow Poster Banner Background, Food, Snack, Sky Background Image And Wallpaper for Free Download.jpg");
   padding: 100px;
   background-size: cover;
   margin-bottom: 30px;
@@ -178,7 +201,7 @@ body {
 }
 
 .Juice {
-  background-image: url("../images/menu/jus/banner.png");
+  background-image: url("../images/menu/Juice/banner.png");
   object-fit: fill;
   padding: 60px;
   color: #8d5530;
@@ -195,9 +218,9 @@ body {
   justify-content: space-around;
   align-items: flex-start;
   /* flex-wrap: wrap; */
-  gap: 20px;
+  /* gap: 20px; */
   max-width: 900px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .category-item-circle {
@@ -334,130 +357,175 @@ body {
 }
 
 /* Checkout card*/
+/* --- Final Checkout Card CSS --- */
 #checkout-card {
-        display: none; /* Awalnya tersembunyi */
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 300px; /* Sesuaikan lebar */
-        max-height: 400px; /* Batas tinggi maksimum */
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        flex-direction: column; /* Karena JS menggunakan display: flex */
-        gap: 10px; /* Jarak antar elemen di dalam checkout card */
-      }
+  /* display: none; /* JavaScript akan mengubah ini menjadi 'flex' atau 'none' */
+  /* Pastikan JavaScript Anda (updateCheckout) mengatur display: flex; saat ada item, 
+     dan display: none; saat keranjang kosong. */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px; /* Batas tinggi maksimum, bagus untuk banyak item */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px; /* Sedikit dikurangi agar lebih pas jika ada banyak konten */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000; /* Pastikan di atas elemen lain */
 
-      #checkout-card h2 {
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-size: 1.5em;
-        color: #333;
-        text-align: center;
-      }
+  display: flex; /* Diatur oleh JavaScript, tapi ini adalah state ketika terlihat */
+  flex-direction: column;
+  gap: 10px; /* Jarak antar elemen utama di dalam kartu (h2, #checkout-items, #checkout-total, button) */
+}
 
-      #checkout-items {
-        overflow-y: auto; /* Scroll jika item banyak */
-        flex-grow: 1; /* Agar bisa memanjang */
-        margin-bottom: 10px;
-      }
+#checkout-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px; /* Sedikit dikurangi */
+  font-size: 1.4em; /* Sedikit disesuaikan */
+  color: #333;
+  text-align: center;
+  border-bottom: 1px solid #eee; /* Tambahkan pemisah visual */
+  padding-bottom: 10px;
+}
 
-      .checkout-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid #eee;
-        font-size: 0.9em;
-      }
-      .checkout-item:last-child {
-        border-bottom: none;
-      }
-      .checkout-item .name {
-        flex-basis: 60%;
-        text-align: left;
-      }
-      .checkout-item .qty {
-        flex-basis: 15%;
-        text-align: center;
-      }
-      .checkout-item .price {
-        flex-basis: 25%;
-        text-align: right;
-        font-weight: bold;
-      }
+#checkout-items {
+  overflow-y: auto; /* Scroll jika item banyak, ini sudah benar */
+  flex-grow: 1; /* Agar bisa memanjang mengisi ruang yang tersedia, ini sudah benar */
+  margin-bottom: 10px;
+  min-height: 50px; /* Tambahkan tinggi minimal untuk memastikan area ini selalu punya ruang,
+                         meskipun itemnya sedikit atau untuk debugging jika item tidak muncul */
+  background-color: #f9f9f9; /* Latar belakang sedikit berbeda untuk membedakan area item */
+  padding: 5px;
+  border-radius: 4px;
+}
 
-      #checkout-total {
-        font-weight: bold;
-        font-size: 1.2em;
-        text-align: right;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid #ccc;
-      }
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically align items in the center */
+  padding: 8px 5px; /* Tambahkan sedikit padding horizontal */
+  border-bottom: 1px dashed #eee; /* Ubah ke dashed agar lebih ringan */
+  font-size: 0.9em;
+  color: #333; /* Pastikan warna teks terlihat */
+}
 
-      #checkout-button {
-        background-color: #28a745; /* Warna hijau, sesuaikan */
-        color: white;
-        border: none;
-        padding: 12px 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 1em;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      #checkout-button:hover {
-        background-color: #218838;
-      }
+.checkout-item:last-child {
+  border-bottom: none;
+}
 
-      /* promo */
+.checkout-item .name {
+  flex-basis: 55%; /* Sedikit disesuaikan untuk memberi ruang lebih bagi harga/qty */
+  text-align: left;
+  overflow: hidden; /* Cegah teks panjang merusak layout */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkout-item .qty {
+  flex-basis: 15%;
+  text-align: center;
+  color: #555;
+}
+
+.checkout-item .price {
+  flex-basis: 30%; /* Sedikit disesuaikan */
+  text-align: right;
+  font-weight: bold;
+  color: #1a73e8; /* Warna harga agar menonjol */
+}
+
+#checkout-total {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: right;
+  margin-top: auto; /* Dorong ke bawah jika #checkout-items tidak mengisi semua ruang */
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+  color: #333;
+}
+
+/* Mengubah selector ID agar konsisten dengan JS yang menggunakan addEventListener */
+#proceed-to-checkout-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block; /* Atau 'block' jika ingin lebar penuh */
+  width: 100%; /* Membuat tombol mengambil lebar penuh */
+  box-sizing: border-box; /* Agar padding tidak menambah lebar total */
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Beri jarak dari total */
+}
+
+#proceed-to-checkout-button:hover {
+  background-color: #218838;
+}
+
+/* Styling jika keranjang kosong (opsional, bisa dikontrol JS) */
+/* #checkout-card.empty #checkout-items,
+#checkout-card.empty #checkout-total,
+#checkout-card.empty #proceed-to-checkout-button {
+  /* display: none; */ /* JavaScript sudah menghandle display:none untuk #checkout-card secara keseluruhan */
+/* #checkout-card.empty h2::after { /* Contoh jika ingin menambah teks "(Empty)" */
+/* content: " (Empty)";
+  font-size: 0.7em;
+  color: #777; */
+
+/* promo */
 .menu-promo {
- display: flex; /* Mengubah menjadi flex container */
- flex-direction: row; /* Mengatur item menjadi baris */
- gap: 24px;
- max-width: 900px;
- margin: 0 auto;
- overflow-x: auto; /* Menambahkan scroll horizontal jika item melebihi lebar kontainer */
- padding-bottom: 10px; /* Memberikan ruang di bawah jika ada scrollbar horizontal */
+  display: flex; /* Mengubah menjadi flex container */
+  flex-direction: row; /* Mengatur item menjadi baris */
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: auto; /* Menambahkan scroll horizontal jika item melebihi lebar kontainer */
+  padding-bottom: 10px; /* Memberikan ruang di bawah jika ada scrollbar horizontal */
 }
 
 .promo-card {
- background-color: rgba(36, 35, 35, 0.4);
- border-radius: 12px;
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
- padding: 20px;
- display: flex;
- flex-direction: column;
- align-items: center;
- cursor: pointer;
- transition: transform 0.2s ease;
- position: relative;
- min-width: 250px; /* Atur lebar minimum card agar tidak terlalu sempit */
+  background-color: rgba(36, 35, 35, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+  min-width: 250px; /* Atur lebar minimum card agar tidak terlalu sempit */
 }
 
 .promo-card:hover {
- transform: translateY(-5px);
- box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+
 /* media queris */
+
 /* laptop */
+
 @media (max-width: 1366px) {
   html {
     font-size: 75%;
   }
 }
+
 /* tablet */
+
 @media (max-width: 758px) {
   html {
     font-size: 62.5%;
   }
 
-  #hamburger-menu {
+  #hamburger {
     display: inline-block;
   }
 
@@ -490,54 +558,8 @@ body {
   .navbar .navbar-nav a:hover::after {
     transform: scaleX(0.2);
   }
-
-  .about .row {
-    flex-wrap: wrap;
-  }
-
-  .about .row .about-img img {
-    height: 24rem;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .about .row .content {
-    padding: 0;
-  }
-
-  .about .row .content h3 {
-    margin-top: 1rem;
-    font-size: 2rem;
-  }
-
-  .about .row .content p {
-    font-size: 1.4rem;
-  }
-
-  .menu p {
-    font-size: 1.4rem;
-  }
-
-  .contact .row {
-    flex-wrap: wrap;
-  }
-
-  .contact .row .map {
-    height: 30rem;
-  }
-
-  .contact .from .form-title {
-    padding-top: 5rem;
-  }
-
-  .contact .from form {
-    padding-top: 0.5rem;
-  }
-
-  .contact .map-title {
-    padding-top: 4rem;
-  }
 }
+
 /* mobile */
 @media (max-width: 450px) {
   html {

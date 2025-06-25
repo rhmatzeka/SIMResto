@@ -1,0 +1,231 @@
+/* Styling umum untuk dashboard chef */
+.chef-dashboard {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: flex-start; /* Memastikan kolom sejajar di bagian atas */
+}
+
+/* Styling untuk setiap kolom status (Pesanan Masuk, Sedang Disiapkan, Selesai) */
+.status-column {
+  flex: 1; /* Setiap kolom akan mengambil ruang yang sama */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 400px; /* Tinggi minimum untuk visual */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling untuk judul kolom status */
+.status-column h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+  text-align: center;
+}
+
+/* Styling untuk setiap kartu pesanan */
+.order-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.order-card h3 {
+  margin-top: 0;
+  color: #34495e;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.order-card .order-date {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+.order-card .order-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.order-card .order-items-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.order-card .order-items-list li:last-child {
+  border-bottom: none;
+}
+
+.order-card .order-items-list .quantity {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Styling untuk form aksi pesanan (tombol) */
+.order-action-form {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.order-action-form button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  width: 100%; /* Tombol memenuhi lebar kartu */
+}
+
+.order-action-form .btn-prepare {
+  background-color: #3498db; /* Biru */
+  color: white;
+}
+
+.order-action-form .btn-prepare:hover {
+  background-color: #2980b9;
+}
+
+.order-action-form .btn-finish {
+  background-color: #2ecc71; /* Hijau */
+  color: white;
+}
+
+.order-action-form .btn-finish:hover {
+  background-color: #27ae60;
+}
+
+/* Styling untuk kartu pesanan yang sudah selesai */
+.order-card.finished-card {
+  border-color: #2ecc71;
+  background-color: #e6ffe6; /* Latar hijau muda */
+}
+
+.order-card.finished-card h3 {
+  color: #27ae60;
+}
+
+/* === BAGIAN DIMODIFIKASI: STYLING UNTUK DATE SELECTOR DI DALAM UL.SIDEBAR-MENU === */
+
+/* Styling untuk li yang berisi filter tanggal */
+.sidebar-menu .date-filter-sidebar-item {
+  margin: 10px 0; /* Memberi sedikit ruang antar item menu */
+  /* Padding dan display flex akan diatur di form di dalamnya */
+  list-style: none; /* Pastikan tidak ada bullet point */
+}
+
+/* Styling untuk form di dalam item tanggal */
+.sidebar-menu .date-filter-sidebar-item .date-selector-form {
+  display: flex;
+  flex-direction: column; /* Label dan input dalam kolom */
+  align-items: center; /* PENTING: Untuk memusatkan konten horizontal */
+  padding: 10px 15px; /* Padding vertikal dan horizontal seperti item menu */
+  color: #ecf0f1; /* Warna teks standar sidebar */
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Untuk teks yang tidak diatur oleh flex */
+}
+
+/* Efek hover untuk item tanggal (mirip item menu lain) */
+.sidebar-menu .date-filter-sidebar-item .date-selector-form:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Efek hover */
+  border-radius: 5px;
+}
+
+/* Styling untuk label (yang sekarang hanya berisi ikon) */
+.sidebar-menu .date-filter-sidebar-item label {
+  display: flex; /* Mengatur label sebagai flex container */
+  align-items: center; /* Mensejajarkan ikon secara vertikal */
+  justify-content: center; /* PENTING: Memusatkan ikon secara horizontal */
+  margin-bottom: 8px; /* Jarak antara ikon dan input tanggal */
+  font-size: 0.95rem; /* Sesuaikan ukuran font */
+  color: #ecf0f1; /* Warna ikon */
+  cursor: pointer;
+  width: 100%; /* Penting agar justify-content: center bekerja */
+}
+
+/* Styling untuk ikon di label */
+.sidebar-menu .date-filter-sidebar-item label .icon {
+  /* margin-right: 10px; --> HAPUS ini karena tidak ada teks di sampingnya */
+  font-size: 1.1rem;
+  color: #bdc3c7; /* Warna ikon */
+}
+
+/* Hapus styling untuk menu-text-date karena elemennya sudah dihapus */
+/*
+.sidebar-menu .date-filter-sidebar-item label .menu-text-date {
+    font-size: 0.95rem;
+    color: inherit;
+    white-space: nowrap;
+}
+*/
+
+/* Styling untuk input tanggal */
+.sidebar-menu .date-filter-sidebar-item input[type="date"] {
+  width: calc(100% - 20px); /* Ambil hampir seluruh lebar, kurangi padding */
+  padding: 8px;
+  border: 1px solid #7f8c8d; /* Warna border yang cocok dengan sidebar */
+  border-radius: 4px;
+  background-color: #3a495e; /* Background input yang lebih gelap agar menyatu */
+  color: #ecf0f1; /* Warna teks input */
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+  text-align: center; /* Memusatkan teks tanggal di input */
+}
+
+/* Mengubah warna teks placeholder atau ikon kalender di beberapa browser */
+.sidebar-menu
+  .date-filter-sidebar-item
+  input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(
+    1
+  ); /* Untuk mengubah warna ikon kalender menjadi putih/terang */
+}
+.sidebar-menu
+  .date-filter-sidebar-item
+  input[type="date"]::-webkit-datetime-edit-text,
+.sidebar-menu
+  .date-filter-sidebar-item
+  input[type="date"]::-webkit-datetime-edit-month-field,
+.sidebar-menu
+  .date-filter-sidebar-item
+  input[type="date"]::-webkit-datetime-edit-day-field,
+.sidebar-menu
+  .date-filter-sidebar-item
+  input[type="date"]::-webkit-datetime-edit-year-field {
+  color: #ecf0f1;
+}
+
+/* === HAPUS STYLING LAMA DATE-SELECTOR-CONTAINER JIKA ADA === */
+/* Pastikan Anda sudah menghapus atau mengkomentari blok CSS ini dari chef_dashboard.css jika ada: */
+/*
+.date-selector-container {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-selector-form {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+*/

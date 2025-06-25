@@ -3,6 +3,7 @@
   --bg: black;
   --bgsecondary: white;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -154,6 +155,193 @@ body {
   display: none;
 }
 
+/* =================================
+   STYLING BARU UNTUK BAGIAN BERITA (Ukuran Dikecilkan)
+   ================================= */
+.news {
+  padding: 8rem 7% 1.4rem;
+}
+
+.news h2 {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.news h2 span {
+  color: var(--primary);
+}
+
+.news > p {
+  text-align: center;
+  max-width: 30rem;
+  margin: auto;
+  font-weight: 100;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+.news .row {
+  display: grid;
+  /* Lebar minimum kartu diubah menjadi 25rem */
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+}
+
+.news .news-card {
+  background-color: #1a1a1a;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.news .news-card:hover {
+    transform: scale(1.03);
+}
+
+.news .news-card .news-image img {
+  width: 100%;
+  /* Tinggi gambar diubah menjadi 18rem */
+  height: 18rem;
+  object-fit: cover;
+}
+
+.news .news-card .news-content {
+  padding: 1.2rem; /* Padding sedikit dikurangi */
+}
+
+.news .news-card .news-date {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+
+.news .news-card h3 {
+  font-size: 1.2rem; /* Ukuran judul sedikit dikurangi */
+  color: #fff;
+  margin-top: 0;
+}
+
+.news .news-card .news-excerpt {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.news .news-card .read-more-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.2rem;
+    background-color: var(--primary);
+    color: #fff;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* =================================
+   STYLING BARU UNTUK BAGIAN DISKON
+   ================================= */
+
+/* Menggunakan kembali style judul dari .news */
+.discount {
+  padding: 8rem 7% 1.4rem;
+}
+.discount h2, .discount > p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.discount h2 {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+.discount h2 span {
+  color: var(--primary);
+}
+.discount > p {
+  max-width: 30rem;
+  font-weight: 100;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Kontainer untuk scroll horizontal */
+.discount .horizontal-scroll-container {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.discount .scroll-content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+}
+
+/* Kartu Promo/Diskon */
+.discount .product-card {
+  flex: 0 0 300px; /* Lebar tetap untuk setiap kartu */
+  background-color: #1a1a1a;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+
+.discount .product-card:hover {
+    transform: translateY(-10px);
+}
+
+.discount .product-card .image-container {
+  width: 100%;
+  height: 180px; /* Tinggi gambar diskon */
+}
+
+.discount .product-card .image-product-promo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discount .product-card .product-info {
+  padding: 1.5rem;
+}
+
+.discount .product-card .product-info h1 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.discount .product-card .product-info .subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 0;
+  text-align: center;
+  max-width: 100%;
+}
+
+.discount .product-card .promo-code {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #ccc;
+}
+
+.discount .product-card .promo-code span {
+    font-weight: bold;
+    color: #fff;
+    background-color: transparent;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: 1px dashed var(--primary);
+}
+
 /* hero section */
 
 .hero {
@@ -237,13 +425,13 @@ body {
 
 /* promo section */
 
-.horizontal-scroll-container {
+/* .horizontal-scroll-container {
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
   padding: 20px 0;
   scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
+/* } */
 
 .horizontal-scroll-container::-webkit-scrollbar {
   display: none; /* Hide scrollbar for Chrome/Safari */
@@ -254,6 +442,21 @@ body {
   gap: 25px;
   padding: 0 20px;
 }
+
+.product-info .promo-code {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #ccc;
+}
+
+.product-info .promo-code span {
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--primary); /* Menggunakan warna utama tema */
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px dashed #fff;
+} */
 
 /* Common Card Styles */
 .product-card {
@@ -440,6 +643,196 @@ body {
   font-weight: 100;
   line-height: 1.6;
 }
+
+/* Basic Reset */
+
+/* chef */
+/* =================================
+   STYLING BAGIAN CHEF (SESUAI TEMA)
+   ================================= */
+.chefs-section {
+    /* Menghapus background putih agar menyatu dengan tema */
+    padding: 4rem 7% 1.4rem; /* Menyesuaikan padding dengan section lain */
+    text-align: center;
+}
+
+.chefs-section h2 {
+    font-size: 2.2em;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: white; /* Warna teks utama diubah menjadi putih */
+}
+
+.chefs-section h2 .team-members {
+    display: block;
+    font-size: 0.7em;
+    color: var(--primary); /* Menggunakan warna hijau tema */
+    margin-bottom: 5px;
+}
+
+.chefs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.chef-card {
+    background-color: #1a1a1a; /* Latar belakang kartu dibuat gelap, senada dengan section 'news' */
+    border-radius: 8px;
+    border: 1px solid #333; /* Garis batas abu-abu gelap */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Bayangan disesuaikan untuk background gelap */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    padding-bottom: 50px; 
+}
+
+.chef-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    border-color: var(--primary); /* Garis batas berubah menjadi hijau saat di-hover */
+}
+
+.chef-image {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    aspect-ratio: 1 / 1; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.chef-image img {
+    width: 100%;
+    height: 100%; 
+    border-radius: 50%; 
+    display: block;
+    object-fit: cover; 
+    border: 3px solid var(--primary); 
+    object-position: center; /* <-- TAMBAHKAN BARIS INI */
+}
+
+.chef-info {
+    padding: 15px;
+    box-sizing: border-box;
+    padding-bottom: 10px; 
+}
+
+.chef-info h3 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    color: #fff; /* Nama chef menjadi putih */
+    font-weight: bold;
+}
+
+.chef-info p {
+    font-size: 0.9em;
+    color: #ccc; /* Jabatan chef menjadi abu-abu terang */
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    padding: 10px 0; 
+    background-color: #252525; /* Latar belakang ikon sosial dibuat gelap */
+    border-top: 1px solid #444;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.chef-card:hover .social-icons {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #555; /* Warna default ikon sosial */
+    color: #fff; /* Warna ikon di dalamnya */
+    font-size: 0.7em;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Mengubah warna ikon saat di-hover */
+.social-icons a:hover {
+    background-color: var(--primary);
+    color: #000;
+}
+/* =================================
+   MEDIA QUERY UNTUK CHEF (TABLET & HP)
+   ================================= */
+@media (max-width: 768px) {
+    .chefs-section {
+        padding: 20px;
+    }
+
+    .chefs-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .chefs-container {
+        gap: 15px;
+    }
+
+    .chef-card {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        padding-bottom: 40px;
+    }
+
+    .chef-card:hover {
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+        transform: translateY(-3px);
+    }
+
+    .chef-image {
+        padding: 10px;
+    }
+
+    .chef-info {
+        padding: 10px;
+    }
+
+    .chef-info h3 {
+        font-size: 1.1em;
+    }
+
+    .chef-info p {
+        font-size: 0.8em;
+        margin-bottom: 8px;
+    }
+
+    .social-icons {
+        padding: 8px 0;
+        gap: 6px;
+    }
+
+    .social-icons a {
+        width: 25px;
+        height: 25px;
+        font-size: 0.6em;
+    }
+}
+/* end chef */
 
 /* menu section */
 

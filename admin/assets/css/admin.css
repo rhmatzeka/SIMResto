@@ -1,0 +1,215 @@
+:root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --bg-color: #f4f7f9;
+            --white-color: #ffffff;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        .sidebar-header .fa-mug-hot {
+            margin-right: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            flex-grow: 1;
+            padding-top: 20px;
+        }
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s, padding-left 0.3s;
+            border-left: 4px solid transparent;
+        }
+        .sidebar-menu li a .icon {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .sidebar-menu li a.active, .sidebar-menu li a:hover {
+            background: var(--secondary-color);
+            border-left-color: var(--accent-color);
+            padding-left: 30px;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--secondary-color);
+        }
+        .sidebar-footer a {
+            background-color: #e74c3c;
+            color: var(--white-color);
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .sidebar-footer a:hover { background-color: #c0392b; }
+
+        /* Main Content Area */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: var(--white-color);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+        .header h1 { font-size: 1.5rem; color: var(--primary-color); }
+        .header .admin-info { font-size: 1rem; }
+
+        .content-area {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        /* Summary Cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: var(--white-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .card .icon-wrapper {
+            font-size: 2rem;
+            padding: 15px;
+            border-radius: 50%;
+            color: var(--white-color);
+        }
+        .card-revenue .icon-wrapper { background-color: #27ae60; }
+        .card-orders .icon-wrapper { background-color: #2980b9; }
+        .card-menu .icon-wrapper { background-color: #e67e22; }
+        .card-users .icon-wrapper { background-color: #8e44ad; }
+        .card-info h3 { font-size: 1.8rem; font-weight: 600; }
+        .card-info p { font-size: 0.9rem; color: #7f8c8d; }
+
+        /* Recent Orders Table */
+        .recent-orders {
+            background: var(--white-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        .recent-orders h2 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .table-wrapper { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            color: black;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        tbody tr:hover { background-color: #f9f9f9; }
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: var(--white-color);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status.pending { background-color: #f39c12; }
+        .status.completed { background-color: #2ecc71; }
+        .status.cancelled { background-color: #e74c3c; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+            .sidebar-header h2 span, .sidebar-menu .menu-text {
+                display: none;
+            }
+            .sidebar-header { font-size: 1.2rem; }
+            .sidebar-menu li a { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                border-bottom: 1px solid var(--secondary-color);
+            }
+            .sidebar-header, .sidebar-footer { display: none; }
+            .sidebar-menu {
+                display: flex;
+                flex-direction: row;
+                padding-top: 0;
+            }
+            .sidebar-menu li a { border-left: 0; border-bottom: 4px solid transparent; }
+             .sidebar-menu li a.active, .sidebar-menu li a:hover {
+                border-bottom-color: var(--accent-color);
+                padding-left: 25px;
+             }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }

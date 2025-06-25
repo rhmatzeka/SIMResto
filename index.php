@@ -1,8 +1,20 @@
-<?php 
-session_start();
-$isLoggedIn = isset($_SESSION['user_id']);
-?>
+<?php
+include 'koneksi.php'; 
 
+// Mengambil 3 berita terbaru
+$result_berita = $conn->query("SELECT id, judul, konten, gambar, tanggal_post FROM berita ORDER BY tanggal_post DESC LIMIT 3");
+
+// --- KODE DISKON YANG DIPERBARUI ---
+// Query ini sekarang memeriksa status dan validitas waktu secara bersamaan.
+$query_diskon = "
+    SELECT kode_diskon, deskripsi, gambar, nilai_diskon, tipe_diskon 
+    FROM discounts 
+    ORDER BY id DESC 
+    LIMIT 6";
+$result_diskon = $conn->query($query_diskon);
+// --- BATAS KODE YANG DIPERBARUI ---
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,16 +39,17 @@ $isLoggedIn = isset($_SESSION['user_id']);
       <div class="navbar-nav">
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
-        <a href="menu.html">Menu</a>
+        <a href="menu.php">Menu</a>
         <a href="#location">Location</a>
         <a href="#contact">Contact Us</a>
+        <a href="reservasi/dashboard_reservasi.php">Reservasi</a>
       </div>
       <div class="navbar-extra">
     <div class="dropdown">
         <a href="" class="dropbtn"><i data-feather="phone"></i></a>
         <div class="dropdown-content">
-            <a href="#menu">+62</a>
-            <a href="#beverage">+62</a>
+            <a href="#">+62</a>
+            <a href="#">+62</a>
         </div>
     </div>
     <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
@@ -46,18 +59,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <a href="#" id="sun-btn" onclick="setDarkMode(false)" style="display: none">
         <i data-feather="sun"></i>
     </a>
-    <?php if ($isLoggedIn): ?>
-        <div class="dropdown">
-            <a href="#" class="dropbtn"><i data-feather="user"></i></a>
-            <div class="dropdown-content">
-                <a href="#">My Profile</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </div>
-    <?php else: ?>
         <a href="login.php"><i data-feather="user"></i></a>
-    <?php endif; ?>
-</div>
+      </div>
     </nav>
 
     <section class="hero" id="home">
@@ -68,74 +71,65 @@ $isLoggedIn = isset($_SESSION['user_id']);
       </main>
     </section>
 
-    <section class="discount" id="discount">
-      <div class="horizontal-scroll-container">
-        <div class="scroll-content">
-            <!-- Card 1 -->
-          <div class="product-card main-card">
-            <div class="image-container">
-              <img src="images/menu/foods/bundle-1.jpg" alt="Heritage Bihun" class="image-product-promo">
-            </div>
-            <div class="product-info">
-              <h1>Bundle 1</h1>
-              <p class="subtitle">$20</p>
-            </div>
-          </div>
-            
-          <div class="product-card main-card">
-            <div class="image-container">
-              <img src="images/menu/foods/bundle-1.jpg" alt="Heritage Bihun" class="image-product-promo">
-            </div>
-            <div class="product-info">
-              <h1>Bundle 1</h1>
-              <p class="subtitle">$20</p>
-            </div>
-          </div>
-            
-          <div class="product-card main-card">
-            <div class="image-container">
-              <img src="images/menu/foods/bundle-1.jpg" alt="Heritage Bihun" class="image-product-promo">
-            </div>
-            <div class="product-info">
-              <h1>Bundle 1</h1>
-              <p class="subtitle">$20</p>
-            </div>
-          </div>
-            
-          <div class="product-card main-card">
-            <div class="image-container">
-              <img src="images/menu/foods/bundle-1.jpg" alt="Heritage Bihun" class="image-product-promo">
-            </div>
-            <div class="product-info">
-              <h1>Bundle 1</h1>
-              <p class="subtitle">$20</p>
-            </div>
-          </div>
-
-          <div class="product-card main-card">
-            <div class="image-container">
-              <img src="images/menu/foods/bundle-1.jpg" alt="Heritage Bihun" class="image-product-promo">
-            </div>
-            <div class="product-info">
-              <h1>Bundle 1</h1>
-              <p class="subtitle">$20</p>
-            </div>
-          </div>
-
-          <div class="product-card main-card">
-            <div class="image-container">
-              <img src="images/menu/foods/bundle-1.jpg" alt="Heritage Bihun" class="image-product-promo">
-            </div>
-            <div class="product-info">
-              <h1>Bundle 1</h1>
-              <p class="subtitle">$20</p>
-            </div>
-          </div>
+        <section id="news" class="news">
+        <h2><span>Latest</span> News</h2>
+        <p>Ikuti terus informasi dan promo terbaru dari kami.</p>
+        <div class="row">
+            <?php if ($result_berita && $result_berita->num_rows > 0): ?>
+                <?php while($berita = $result_berita->fetch_assoc()): ?>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="images/berita/<?= htmlspecialchars($berita['gambar'] ?? 'placeholder.png') ?>" alt="<?= htmlspecialchars($berita['judul']) ?>">
+                        </div>
+                        <div class="news-content">
+                            <p class="news-date"><?= date('d F Y', strtotime($berita['tanggal_post'])) ?></p>
+                            <h3><?= htmlspecialchars($berita['judul']) ?></h3>
+                            <p class="news-excerpt">
+                                <?php
+                                    $potongan_konten = substr(strip_tags($berita['konten']), 0, 100);
+                                    echo htmlspecialchars($potongan_konten) . '...';
+                                ?>
+                            </p>
+                            <a href="detail_berita.php?id=<?= $berita['id'] ?>" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p style="color:white; text-align:center; width:100%;">Belum ada berita terbaru saat ini.</p>
+            <?php endif; ?>
         </div>
-    </div>
     </section>
 
-    <section id="about" class="about">
+    <section class="discount" id="discount">
+        <h2><span>Hot</span> Deals</h2>
+        <p>Jangan lewatkan promo dan diskon spesial hanya untuk Anda!</p>
+        <div class="horizontal-scroll-container">
+            <div class="scroll-content">
+                <?php if ($result_diskon && $result_diskon->num_rows > 0): ?>
+                    <?php while($diskon = $result_diskon->fetch_assoc()): ?>
+                        <div class="product-card main-card">
+                            <div class="image-container">
+                                <img src="images/discounts/<?= htmlspecialchars($diskon['gambar'] ?? 'placeholder.png') ?>" alt="<?= htmlspecialchars($diskon['deskripsi']) ?>" class="image-product-promo">
+                            </div>
+                            <div class="product-info">
+                                <h1><?= htmlspecialchars($diskon['deskripsi']) ?></h1>
+                                <?php if ($diskon['tipe_diskon'] == 'persen'): ?>
+                                    <p class="subtitle">Diskon <?= (int)$diskon['nilai_diskon'] ?>%</p>
+                                <?php else: ?>
+                                    <p class="subtitle">Potongan $<?= number_format($diskon['nilai_diskon'], 2) ?></p>
+                                <?php endif; ?>
+                                <p class="promo-code">Kode: <span><?= htmlspecialchars($diskon['kode_diskon']) ?></span></p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p style="color: white; text-align: center; width: 100%;">Belum ada diskon yang tersedia saat ini.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+          <section id="about" class="about">
       <h2><span>About</span> Us</h2>
       <div class="row">
         <div class="about-img">
@@ -148,6 +142,70 @@ $isLoggedIn = isset($_SESSION['user_id']);
         </div>
       </div>
     </section>
+
+    <!-- chef -->
+     <div class="chefs-section">
+        <h2><span class="team-members">- Team 3 -</span>Our Master Chefs</h2>
+        <div class="chefs-container">
+            <div class="chef-card">
+                <div class="chef-image">
+                    <img src="images/chef/akbar.jpg" alt="Chef 1">
+                </div>
+                <div class="chef-info">
+                    <h3>Lalu Akbar Prayudi</h3>
+                    <p>Sous Chef</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
+                        <a href="#" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
+                        <a href="#" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="chef-card">
+                <div class="chef-image">
+                    <img src="images/chef/mikael.jpg" alt="Chef 2">
+                </div>
+                <div class="chef-info">
+                    <h3>Mikael Imanuel C.</h3>
+                    <p>Executive Chef</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
+                        <a href="#" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
+                        <a href="#" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="chef-card">
+                <div class="chef-image">
+                    <img src="images/chef/teguh.jpg" alt="Chef 3">
+                </div>
+                <div class="chef-info">
+                    <h3>Teguh Arifin</h3>
+                    <p>Chef de Partie</p>
+                    <div class="social-icons">
+                        <a href="https://github.com/TeguhArifin" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
+                        <a href="https://www.instagram.com/uhhyggyjjjvffty/" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
+                        <a href="https://www.linkedin.com/in/teguh-arifin/" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="chef-card">
+                <div class="chef-image">
+                    <img src="images/chef4.jpg" alt="Chef 4">
+                </div>
+                <div class="chef-info">
+                    <h3>Full Name</h3>
+                    <p>Designation</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><span class="icon">f</span></a>
+                        <a href="#" aria-label="Twitter"><span class="icon">tw</span></a>
+                        <a href="#" aria-label="Instagram"><span class="icon">ig</span></a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- end chef -->
 
     <section id="menu" class="menu">
       <h2>
@@ -554,24 +612,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
       </div>
     </section>
 
-    <footer>
-      <div class="socials">
-        <a href=""><i data-feather="instagram"></i></a>
-        <a href=""><i data-feather="twitter"></i></a>
-        <a href=""><i data-feather="facebook"></i></a>
-      </div>
-      <div class="links">
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#menu">Menu's</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="credit">
-        <p>
-          &copy; 2025 | <a href="https://github.com/draprotez">LAMPERIE</a>.
-        </p>
-      </div>
-    </footer>
+    <?php include 'footer.php'; ?>
 
     <div class="modal" id="item-detail-modal">
       <div class="modal-container">
