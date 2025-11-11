@@ -39,7 +39,7 @@ $result_diskon = $conn->query($query_diskon);
       <div class="navbar-nav">
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
-        <a href="menu.php">Menu</a>
+        <a href="#menu">Menu</a>
         <a href="#location">Location</a>
         <a href="#contact">Contact Us</a>
         <a href="reservasi/dashboard_reservasi.php">Reservasi</a>
@@ -48,7 +48,7 @@ $result_diskon = $conn->query($query_diskon);
     <div class="dropdown">
         <a href="" class="dropbtn"><i data-feather="phone"></i></a>
         <div class="dropdown-content">
-            <a href="#">+62</a>
+            <a href="#">+6289514509392</a>
             <a href="#">+62</a>
         </div>
     </div>
@@ -67,7 +67,7 @@ $result_diskon = $conn->query($query_diskon);
       <main class="content">
         <h1>let's take a break to get energy</h1>
         <p>Modern, Aunthentic Restaurant Food and Beverage Restaurant. We serve</p>
-        <a href="" class="detail-menu">Detail Menu's</a>
+        <a href="menu.php" class="detail-menu">Detail Menu's</a>
       </main>
     </section>
 
@@ -149,10 +149,10 @@ $result_diskon = $conn->query($query_diskon);
         <div class="chefs-container">
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/akbar.jpg" alt="Chef 1">
+                    <img src="images/chef/koki1.png" alt="Chef 1">
                 </div>
                 <div class="chef-info">
-                    <h3>Lalu Akbar Prayudi</h3>
+                    <h3>Rahmat Ganteng</h3>
                     <p>Sous Chef</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
@@ -163,10 +163,10 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/mikael.jpg" alt="Chef 2">
+                    <img src="images/chef/koki2.png" alt="Chef 2">
                 </div>
                 <div class="chef-info">
-                    <h3>Mikael Imanuel C.</h3>
+                    <h3>Rahmat Eka</h3>
                     <p>Executive Chef</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
@@ -177,15 +177,15 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/teguh.jpg" alt="Chef 3">
+                    <img src="images/chef/koki3.png" alt="Chef 3">
                 </div>
                 <div class="chef-info">
-                    <h3>Teguh Arifin</h3>
+                    <h3>Rahmat Ganz</h3>
                     <p>Chef de Partie</p>
                     <div class="social-icons">
-                        <a href="https://github.com/TeguhArifin" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
-                        <a href="https://www.instagram.com/uhhyggyjjjvffty/" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
-                        <a href="https://www.linkedin.com/in/teguh-arifin/" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
+                        <a href="https://github.com/rhmatzeka" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
+                        <a href="https://www.instagram.com/rahmatdev.id/" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
+                        <a href="https://www.linkedin.com/in/rahmatekasatria/" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
                     </div>
                 </div>
             </div>

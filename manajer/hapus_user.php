@@ -23,6 +23,9 @@ if (isset($_GET['id'])) {
         header("Location: manajemen_user.php");
         exit();
     }
+
+    // Tambahkan baris ini untuk hapus dulu pesanan user
+    // $conn->query("DELETE FROM orders WHERE user_id = $id");
     
     $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
     $stmt->bind_param("i", $id);

@@ -2,52 +2,70 @@
 require_once '../koneksi.php';
 
 header('Content-Type: application/json');
-$response = ['status' => 'error', 'message' => 'Invalid request.'];
+
+$response = ['status' => 'error', 'message' => 'Permintaan tidak valid.'];
 
 $action = $_GET['action'] ?? '';
+$reservation_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Action baru untuk mengkonfirmasi kedatangan pelanggan
-if ($action == 'confirm_arrival' && isset($_GET['id'])) {
-    $reservation_id = intval($_GET['id']);
+if ($reservation_id <= 0) {
+    echo json_encode($response);
+    exit();
+}
+
+// ================================
+// KONFIRMASI KEDATANGAN
+// ================================
+if ($action === 'confirm_arrival') {
     $current_datetime = date("Y-m-d H:i:s");
 
-    // Hanya ubah status dari 'Confirmed' menjadi 'Arrived'
-    // dan pastikan table_number sudah terisi dari data reservasi awal
-    $stmt = $conn->prepare("UPDATE reservations SET status = 'Arrived', seated_at = ? WHERE id = ? AND status = 'Confirmed'");
-    $stmt->bind_param("si", $current_datetime, $reservation_id);
+    // Ambil table_number agar bisa dicek apakah valid
+    $check = $conn->prepare("SELECT table_number, status FROM reservations WHERE id = ?");
+    $check->bind_param("i", $reservation_id);
+    $check->execute();
+    $result = $check->get_result();
+    $res = $result->fetch_assoc();
+    $check->close();
 
-    if ($stmt->execute()) {
-        if ($stmt->affected_rows > 0) {
+    if (!$res) {
+        $response['message'] = 'Reservasi tidak ditemukan.';
+    } elseif ($res['status'] !== 'Confirmed') {
+        $response['message'] = 'Hanya reservasi dengan status Confirmed yang bisa dikonfirmasi kedatangannya.';
+    } elseif (empty($res['table_number'])) {
+        $response['message'] = 'Nomor meja belum ditentukan. Silakan atur meja terlebih dahulu.';
+    } else {
+        // Update status ke Arrived dan isi waktu seated_at
+        $stmt = $conn->prepare("UPDATE reservations SET status = 'Arrived', seated_at = ? WHERE id = ?");
+        $stmt->bind_param("si", $current_datetime, $reservation_id);
+
+        if ($stmt->execute() && $stmt->affected_rows > 0) {
             $response = ['status' => 'success', 'message' => 'Kedatangan pelanggan berhasil dikonfirmasi.'];
         } else {
-            $response['message'] = 'Gagal mengkonfirmasi kedatangan atau reservasi tidak berstatus "Confirmed".';
+            $response['message'] = 'Gagal memperbarui status reservasi.';
         }
-    } else {
-        $response = ['status' => 'error', 'message' => 'Terjadi kesalahan database: ' . $conn->error];
+        $stmt->close();
     }
-    $stmt->close();
 
-} elseif ($action == 'complete' && isset($_GET['id'])) {
-    // Action untuk menyelesaikan reservasi (mengosongkan meja)
-    $reservation_id = intval($_GET['id']);
-    
-    // Meja hanya dikosongkan jika statusnya 'Arrived' atau 'Seated'
-    $stmt = $conn->prepare("UPDATE reservations SET status = 'Completed', table_number = NULL WHERE id = ? AND status IN ('Arrived', 'Seated')");
+// ================================
+// SELESAIKAN RESERVASI
+// ================================
+} elseif ($action === 'complete') {
+    $stmt = $conn->prepare("
+        UPDATE reservations 
+        SET status = 'Completed', table_number = NULL 
+        WHERE id = ? AND status IN ('Arrived', 'Seated')
+    ");
     $stmt->bind_param("i", $reservation_id);
 
-    if ($stmt->execute()) {
-        if ($stmt->affected_rows > 0) {
-            $response = ['status' => 'success', 'message' => 'Reservasi telah diselesaikan. Meja kembali tersedia.'];
-        } else {
-            $response['message'] = 'Gagal menyelesaikan atau reservasi tidak dalam status "Arrived" atau "Seated".';
-        }
+    if ($stmt->execute() && $stmt->affected_rows > 0) {
+        $response = ['status' => 'success', 'message' => 'Reservasi telah diselesaikan dan meja dikosongkan.'];
     } else {
-        $response = ['status' => 'error', 'message' => 'Terjadi kesalahan saat mengupdate database: ' . $conn->error];
+        $response['message'] = 'Reservasi tidak dalam status yang bisa diselesaikan.';
     }
     $stmt->close();
 
 } else {
-    $response = ['status' => 'error', 'message' => 'Aksi tidak valid atau tidak diizinkan.'];
+    $response['message'] = 'Aksi tidak valid.';
 }
 
 echo json_encode($response);

@@ -174,6 +174,5 @@ $adminName = htmlspecialchars($_SESSION['user']['name']);
 
     });
 </script>
-<?php include 'footer.php'; ?>
 </body>
 </html>

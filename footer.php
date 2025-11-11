@@ -23,15 +23,15 @@
       </div>
       <div class="links">
         <a href="index.php">Home</a>
-        <a href="about.php">About Us</a>
+        <a href="#">About Us</a>
         <a href="menu.php">Menu</a>
         <a href="location.php">Location</a>
-        <a href="contact.php">Contact Us</a>
-        <a href="reservation.php">Reservation</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Reservation</a>
       </div>
       <div class="credit">
         <p>
-          © 2025 | <a href="https://github.com/draprotez">Akbar | Mikael | Teguh</a>.
+          © 2025 | <a href="https://github.com/rhmatzeka">Rahmat | Agung | Adjie</a>.
         </p>
       </div>
     </footer>
