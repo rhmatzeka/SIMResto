@@ -163,14 +163,14 @@ $result_diskon = $conn->query($query_diskon);
 
     <!-- chef -->
  <div class="chefs-section">
-        <h2><span class="team-members">- Team 3 -</span>Our Master Chefs</h2>
+        <h2><span class="team-members">- Team 5 -</span>Our Master Chefs</h2>
         <div class="chefs-container">
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/akbar.jpg" alt="Chef 1">
+                    <img src="images/chef/koki1.png" alt="Chef 1">
                 </div>
                 <div class="chef-info">
-                    <h3>Lalu Akbar Prayudi</h3>
+                    <h3>Rahmat Ganteng</h3>
                     <p>Sous Chef</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
@@ -181,10 +181,10 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/mikael.jpg" alt="Chef 2">
+                    <img src="images/chef/koki2.png" alt="Chef 2">
                 </div>
                 <div class="chef-info">
-                    <h3>Mikael Imanuel C.</h3>
+                    <h3>Rahmat Eka</h3>
                     <p>Executive Chef</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
@@ -195,15 +195,15 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/teguh.jpg" alt="Chef 3">
+                    <img src="images/chef/koki3.png" alt="Chef 3">
                 </div>
                 <div class="chef-info">
-                    <h3>Teguh Arifin</h3>
+                    <h3>Rahmat Ganz</h3>
                     <p>Chef de Partie</p>
                     <div class="social-icons">
-                        <a href="https://github.com/TeguhArifin" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
-                        <a href="https://www.instagram.com/uhhyggyjjjvffty/" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
-                        <a href="https://www.linkedin.com/in/teguh-arifin/" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
+                        <a href="https://github.com/rhmatzeka" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
+                        <a href="https://www.instagram.com/rahmatdev.id/" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
+                        <a href="https://www.linkedin.com/in/rahmatekasatria/" aria-label="Instagram"><span class="icon"><i data-feather="linkedin"></i></span></a>
                     </div>
                 </div>
             </div>

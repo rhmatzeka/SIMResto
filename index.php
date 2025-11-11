@@ -145,7 +145,7 @@ $result_diskon = $conn->query($query_diskon);
 
     <!-- chef -->
      <div class="chefs-section">
-        <h2><span class="team-members">- Team 3 -</span>Our Master Chefs</h2>
+        <h2><span class="team-members">- Team 5 -</span>Our Master Chefs</h2>
         <div class="chefs-container">
             <div class="chef-card">
                 <div class="chef-image">
