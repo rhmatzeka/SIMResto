@@ -35,7 +35,7 @@ if(!isset($_SESSION['user'])) {
 </head>
 <body>
   <nav class="navbar">
-      <a href="dashboard.php" class="navbar-logo"> <img src="images/icon-lamperie.png" alt="Lamperie Logo" class="img-navbar"/>
+      <a href="dashboard.php" class="navbar-logo"> <img src="images/arji.png" alt="Lamperie Logo" class="img-navbar"/>
       </a>
       <div class="navbar-nav"> <a href="dashboard.php">Home</a>
         <a href="dashboard.php#about">About Us</a> <a href="menulogin.php">Menu</a>

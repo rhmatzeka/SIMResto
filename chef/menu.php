@@ -20,10 +20,7 @@ $q = $conn->query("SELECT * FROM menu_items");
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="css/menu.css" />
 </head>
-
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar">
       <a href="#home" class="navbar-logo">
         <img src="images/icon-lamperie.png" alt="" class="img-navbar"
@@ -59,7 +56,6 @@ $q = $conn->query("SELECT * FROM menu_items");
       </div>
     </nav>
 
-    <!-- Menu Content -->
     <div class="bg-image">
       <h1>MENU</h1>
     </div>
@@ -126,7 +122,6 @@ $q = $conn->query("SELECT * FROM menu_items");
       </div>
     </div>
 
-    
     <h1 class="MainCourse" id="MainCourse">MAIN COURSE</h1>
     <div class="menu-grid">
         <?php
@@ -151,7 +146,6 @@ $q = $conn->query("SELECT * FROM menu_items");
         ?>
     </div>
 
-    <!--list menu-->
     <h1 class="Appetizer" id="Appetizer">APPETIZER</h1>
     <div class="menu-grid">
         <?php
@@ -181,7 +175,7 @@ $q = $conn->query("SELECT * FROM menu_items");
         <?php
         $q->data_seek(0);
         while ($menu = $q->fetch_assoc()):
-            if ($menu['category'] == 'snacks'):
+            if ($menu['category'] == 'Snacks'):
         ?>
             <div class="menu-card" onclick="toggleDescription(this)">
                 <?php if (!empty($menu['image_url'])): ?>
@@ -205,7 +199,7 @@ $q = $conn->query("SELECT * FROM menu_items");
         <?php
         $q->data_seek(0);
         while ($menu = $q->fetch_assoc()):
-            if ($menu['category'] == 'dessert'):
+            if ($menu['category'] == 'Dessert'):
         ?>
             <div class="menu-card" onclick="toggleDescription(this)">
                 <?php if (!empty($menu['image_url'])): ?>
@@ -229,7 +223,7 @@ $q = $conn->query("SELECT * FROM menu_items");
         <?php
         $q->data_seek(0);
         while ($menu = $q->fetch_assoc()):
-            if ($menu['category'] == 'non-coffee'):
+            if ($menu['category'] == 'Non-Coffee'):
         ?>
             <div class="menu-card" onclick="toggleDescription(this)">
                 <?php if (!empty($menu['image_url'])): ?>
@@ -253,7 +247,7 @@ $q = $conn->query("SELECT * FROM menu_items");
         <?php
         $q->data_seek(0);
         while ($menu = $q->fetch_assoc()):
-            if ($menu['category'] == 'coffee'):
+            if ($menu['category'] == 'Coffee'):
         ?>
             <div class="menu-card" onclick="toggleDescription(this)">
                 <?php if (!empty($menu['image_url'])): ?>

@@ -39,7 +39,7 @@ if (!$q) {
     <!-- Link CSS Asli Anda -->
     <link rel="stylesheet" href="css/menu.css" />
 
-    <!-- CSS TAMBAHAN UNTUK KERANJANG (VERSI SIMPLE & TIDAK NABRAK NAVBAR) -->
+    <!-- CSS TAMBAHAN UNTUK KERANJANG (VERSI FLOATING CARD) -->
     <style>
         /* Agar body tidak bisa discroll saat keranjang terbuka */
         body.cart-open {
@@ -64,42 +64,55 @@ if (!$q) {
             opacity: 1;
         }
 
-        /* --- Sidebar Keranjang (Versi Lebih Kecil & Di Bawah Navbar) --- */
+        /* --- KERANJANG (Versi Floating Card / Pendek) --- */
         .cart-sidebar {
             position: fixed;
-            /* PERUBAHAN UTAMA DI SINI: */
-            top: 85px; /* Turunkan 85px agar di bawah navbar (sesuaikan tinggi navbar Anda) */
-            right: -320px; /* Sembunyi di kanan */
-            width: 300px; /* Lebar lebih kecil (Simple) */
-            height: calc(100vh - 85px); /* Tinggi menyesuaikan sisa layar */
+            /* Turunkan lebih jauh (100px) biar gak nabrak navbar */
+            top: 100px; 
+            /* Sembunyi di kanan luar */
+            right: -400px; 
+            
+            /* Lebar keranjang */
+            width: 320px; 
+            
+            /* TINGGI: Auto agar menyesuaikan isi (jadi pendek kalau isi dikit) */
+            height: auto; 
+            /* Batas maksimal tinggi (biar gak kepanjangan sampai bawah) */
+            max-height: 75vh; 
             
             background-color: #fff;
             z-index: 999;
-            box-shadow: -2px 5px 15px rgba(0,0,0,0.1);
-            transition: right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animasi smooth */
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2); /* Shadow lebih lembut */
+            
+            /* Animasi membal sedikit saat muncul */
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            
             display: flex;
             flex-direction: column;
             color: #333;
             font-family: 'Poppins', sans-serif;
-            border-top-left-radius: 15px; /* Sudut melengkung biar manis */
-            border-bottom-left-radius: 15px;
+            
+            /* Sudut membulat semua sisi karena melayang */
+            border-radius: 15px; 
         }
         
         .cart-sidebar.active {
-            right: 0; /* Muncul */
+            /* Saat muncul, beri jarak 20px dari kanan layar */
+            right: 20px; 
         }
 
         /* Header Keranjang */
         .cart-header {
             background-color: #ff8c00;
             color: white;
-            padding: 15px; /* Padding lebih kecil */
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: bold;
-            font-size: 16px; /* Font lebih kecil */
-            border-top-left-radius: 15px;
+            font-size: 16px;
+            /* Radius hanya di atas */
+            border-radius: 15px 15px 0 0; 
         }
         .close-cart-btn {
             cursor: pointer;
@@ -112,14 +125,14 @@ if (!$q) {
         /* Isi Item Keranjang */
         .cart-items-container {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: auto; /* Scroll jika item banyak */
             padding: 15px;
             background-color: #fcfcfc;
         }
 
         .cart-item {
             background: white;
-            padding: 12px; /* Lebih compact */
+            padding: 12px;
             margin-bottom: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -131,7 +144,7 @@ if (!$q) {
         
         .cart-item-details h4 {
             margin: 0 0 3px 0;
-            font-size: 13px; /* Font nama menu lebih kecil */
+            font-size: 13px;
             font-weight: 600;
             color: #333;
         }
@@ -152,7 +165,8 @@ if (!$q) {
             background: white;
             padding: 15px;
             border-top: 1px solid #eee;
-            border-bottom-left-radius: 15px;
+            /* Radius hanya di bawah */
+            border-radius: 0 0 15px 15px; 
         }
         .total-row {
             display: flex;
@@ -167,7 +181,7 @@ if (!$q) {
             background-color: #ff8c00;
             color: white;
             border: none;
-            padding: 12px; /* Tombol lebih ramping */
+            padding: 12px;
             border-radius: 8px;
             font-weight: 600;
             font-size: 14px;
@@ -203,7 +217,7 @@ if (!$q) {
             position: absolute;
             top: -2px;
             right: -2px;
-            background-color: #d32f2f;
+            background-color: #d32f2f; 
             color: white;
             font-size: 11px;
             width: 22px;
@@ -214,6 +228,10 @@ if (!$q) {
             align-items: center;
             font-weight: bold;
             border: 2px solid white;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cart-badge.pop {
+            transform: scale(1.3);
         }
     </style>
   </head>
@@ -283,15 +301,15 @@ if (!$q) {
 
     renderCategory($conn, 'Main Course', 'MainCourse');
     renderCategory($conn, 'Appetizer', 'Appetizer');
-    renderCategory($conn, 'Snacks', 'snacks');
-    renderCategory($conn, 'Dessert', 'dessert');
-    renderCategory($conn, 'Non-Coffee', 'NonCoffee');
-    renderCategory($conn, 'Coffee', 'coffee');
+    renderCategory($conn, 'snacks', 'snacks');
+    renderCategory($conn, 'dessert', 'dessert');
+    renderCategory($conn, 'non-coffee', 'nonCoffee');
+    renderCategory($conn, 'coffee', 'coffee');
     renderCategory($conn, 'Juice', 'juice');
     ?>
 
     <!-- =========================================== -->
-    <!-- KERANJANG BELANJA (UPDATED: SIMPLE & LOWER) -->
+    <!-- KERANJANG BELANJA (VERSI FLOATING CARD) -->
     <!-- =========================================== -->
     
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
@@ -315,10 +333,10 @@ if (!$q) {
         </div>
     </div>
 
-    <!-- Floating Cart Button -->
+    <!-- Floating Cart Button (Hanya muncul di sini) -->
     <div class="floating-cart-btn" onclick="toggleCart()">
         <i class="fas fa-shopping-cart" style="font-size: 22px;"></i>
-        <div class="cart-badge" id="floatingBadge">0</div>
+        <div class="cart-badge" id="floatingBadge" style="display: none;">0</div>
     </div>
 
     <?php include 'footer.php'; ?>
@@ -343,18 +361,16 @@ if (!$q) {
             }
 
             updateUI(id);
-            
-            // Buka keranjang hanya jika menambah item
-            if (change > 0) {
-                openCart();
-            }
         }
 
         function updateUI(id) {
+            // 1. Update angka di tengah tombol + - pada kartu menu
             const qtyDisplay = document.getElementById(`qty-${id}`);
             if (qtyDisplay) {
                 qtyDisplay.innerText = cart[id] ? cart[id].qty : 0;
             }
+            
+            // 2. Render ulang sidebar (untuk data) dan update badge
             renderSidebar();
         }
 
@@ -398,8 +414,17 @@ if (!$q) {
 
             totalEl.innerText = '$' + grandTotal.toFixed(2);
             
+            // Update Badge Angka (Ikon Merah)
             badgeEl.innerText = totalItems;
-            badgeEl.style.display = totalItems > 0 ? 'flex' : 'none';
+            
+            if (totalItems > 0) {
+                badgeEl.style.display = 'flex';
+                // Efek animasi kecil
+                badgeEl.classList.add('pop');
+                setTimeout(() => badgeEl.classList.remove('pop'), 200);
+            } else {
+                badgeEl.style.display = 'none';
+            }
         }
 
         function toggleCart() {
@@ -409,12 +434,6 @@ if (!$q) {
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
             document.body.classList.toggle('cart-open');
-        }
-
-        function openCart() {
-            document.getElementById('cartSidebar').classList.add('active');
-            document.getElementById('cartOverlay').classList.add('active');
-            document.body.classList.add('cart-open');
         }
     </script>
   </body>
