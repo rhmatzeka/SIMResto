@@ -26,7 +26,7 @@ $q = $conn->query("SELECT * FROM menu_items");
     <!-- Navbar -->
     <nav class="navbar">
       <a href="#home" class="navbar-logo">
-        <img src="images/icon-lamperie.png" alt="" class="img-navbar"
+        <img src="images/arji.png" alt="" class="img-navbar"
       /></a>
       <div class="navbar-nav">
         <a href="index.php">Home</a>

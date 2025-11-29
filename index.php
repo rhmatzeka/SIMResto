@@ -21,7 +21,7 @@ $result_diskon = $conn->query($query_diskon);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LAMPERIE</title>
-    <link rel="website icon" type="png" href="images/icon-lamperie.png" />
+    <link rel="website icon" type="png" href="images/arji.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
