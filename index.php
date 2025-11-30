@@ -20,7 +20,7 @@ $result_diskon = $conn->query($query_diskon);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LAMPERIE</title>
+    <title>ARJI RESTO</title>
     <link rel="website icon" type="png" href="images/arji.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -86,15 +86,15 @@ $result_diskon = $conn->query($query_diskon);
 
     <!-- chef -->
      <div class="chefs-section">
-        <h2><span class="team-members">- TOP GLOBAL CHEF -</span>Our Master Chefs</h2>
+        <h2><span class="team-members">- KELOMPOK 5 -</span>Member</h2>
         <div class="chefs-container">
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/koki1.png" alt="Chef 1">
+                    <img src="images/chef/koki1.jpg" alt="Chef 1">
                 </div>
                 <div class="chef-info">
-                    <h3>Rahmat Aspal</h3>
-                    <p>Sous Chef</p>
+                    <h3>Rahmat Ganz</h3>
+                    <p>Fullstack Developer</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
                         <a href="#" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
@@ -104,11 +104,11 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/koki2.png" alt="Chef 2">
+                    <img src="images/chef/koki2.jpg" alt="Chef 2">
                 </div>
                 <div class="chef-info">
                     <h3>Adjie Hitam</h3>
-                    <p>Executive Chef</p>
+                    <p>Backend Developer</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
                         <a href="#" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
@@ -118,11 +118,11 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/koki3.png" alt="Chef 3">
+                    <img src="images/chef/koki3.jpg" alt="Chef 3">
                 </div>
                 <div class="chef-info">
                     <h3>Agung Jawa</h3>
-                    <p>Chef de Partie</p>
+                    <p>Frontend Developer</p>
                     <div class="social-icons">
                         <a href="https://github.com/rhmatzeka" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
                         <a href="https://www.instagram.com/rahmatdev.id/" aria-label="Twitter"><span class="icon"><i data-feather="instagram"></i></span></a>
