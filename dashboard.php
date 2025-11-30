@@ -42,7 +42,7 @@ $result_diskon = $conn->query($query_diskon);
   <body>
     <nav class="navbar">
       <a href="#home" class="navbar-logo">
-        <img src="images/arji1.jpeg" alt="" class="img-navbar"
+        <img src="images/arji.png" alt="" class="img-navbar"
       /></a>
       <div class="navbar-nav">
         <a href="dashboard.php">Home</a>

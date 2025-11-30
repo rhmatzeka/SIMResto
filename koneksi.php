@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "db_lamperieresto";
+$db   = "db_arjiresto";
 
 $conn = new mysqli($host, $user, $pass, $db);
 

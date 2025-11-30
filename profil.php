@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
   <div class="container light-style flex-grow-1 container-p-y">
     <div class="header-with-logo">
-          <img src="images/icon-lamperie.png" alt="Logo" class="img-logo"> 
+          <img src="images/arji.png" alt="Logo" class="img-logo"> 
           <h4 class="font-weight-bold py-3 mb-4">Account Profile</h4>
       </div>
 

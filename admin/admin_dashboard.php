@@ -45,7 +45,7 @@ $adminName = htmlspecialchars($_SESSION['user']['name']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - Lamperie Resto</title>
+    <title>Dashboard Admin - Arji Resto</title>
 
     <link rel="stylesheet" href="assets/css/admin.css">
 
@@ -57,7 +57,7 @@ $adminName = htmlspecialchars($_SESSION['user']['name']);
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h2><i class="fas fa-mug-hot"></i> <span>Lamperie</span></h2>
+            <h2><i class="fas fa-mug-hot"></i> <span>Arji</span></h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="#" class="active"><i class="fas fa-tachometer-alt icon"></i> <span class="menu-text">Dashboard</span></a></li>
@@ -65,7 +65,6 @@ $adminName = htmlspecialchars($_SESSION['user']['name']);
             <li><a href="data_menu.php"><i class="fas fa-utensils icon"></i> <span class="menu-text">Data Menu</span></a></li>
             <li><a href="kelola_berita.php"><i class="fas fa-newspaper icon"></i> <span class="menu-text">Update Berita</span></a></li>
             <li><a href="kelola_diskon.php"><i class="fas fa-percent icon"></i> <span class="menu-text">Kelola Diskon</span></a></li>
-            <li><a href="kelola_pengguna.php"><i class="fas fa-users icon"></i> <span class="menu-text">Kelola Pengguna</span></a></li>
         </ul>
         <div class="sidebar-footer">
             <a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>

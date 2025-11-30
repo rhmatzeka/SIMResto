@@ -13,7 +13,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'waiters') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waiters Dashboard - LAMPERIE</title>
+    <title>Waiters Dashboard - ARJI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
@@ -62,7 +62,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'waiters') {
 </head>
 <body>
     <div id="sidebar" class="d-flex flex-column">
-        <h4 class="text-center mb-4"><i class="fas fa-utensils me-2"></i> LAMPERIE</h4>
+        <h4 class="text-center mb-4"><i class="fas fa-utensils me-2"></i> ARJI</h4>
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" href="#" data-page="reservations"><i class="fas fa-clipboard-list me-2"></i> Reservasi Pengguna</a>
