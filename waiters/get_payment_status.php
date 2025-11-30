@@ -1,37 +1,38 @@
 <?php
+// get_payment_status.php  →  VERSI PALING AMAN (copy ini kalau masih error)
 require_once '../koneksi.php';
 header('Content-Type: application/json');
 
-$payment_statuses = [];
+$data = [];
 
-// Ambil semua pesanan yang belum Completed atau Paid (misal status 'Pending', atau 'Processing')
-// dan dikelompokkan berdasarkan meja
-$query = "
-    SELECT 
-        o.table_number, 
-        SUM(o.total_price) as total_unpaid_amount,
-        COUNT(o.order_id) as total_pending_orders,
-        GROUP_CONCAT(o.order_id) AS order_ids
-    FROM orders o
-    WHERE o.order_status = 'Pending' -- Asumsi 'Pending' berarti belum bayar
-    AND o.table_number IS NOT NULL
-    GROUP BY o.table_number
-    ORDER BY o.table_number ASC
-";
-
+$query = "SELECT table_number, total_price FROM orders WHERE LOWER(order_status) = 'pending' AND table_number IS NOT NULL";
 $result = $conn->query($query);
 
-if ($result) {
+if ($result && $result->num_rows > 0) {
+    $totals = [];
     while ($row = $result->fetch_assoc()) {
-        $payment_statuses[] = $row;
+        $table = $row['table_number'];
+        if (!isset($totals[$table])) {
+            $totals[$table] = ['count' => 0, 'amount' => 0];
+        }
+        $totals[$table]['count']++;
+        $totals[$table]['amount'] += (float)$row['total_price'];
     }
-} else {
-    error_log("Error in get_payment_status.php: " . $conn->error);
-    echo json_encode(['status' => 'error', 'message' => 'Gagal mengambil status pembayaran.']);
-    exit();
+
+    foreach ($totals as $table => $info) {
+        $data[] = [
+            'table_number'         => $table,
+            'total_unpaid_amount'  => $info['amount'],
+            'total_pending_orders' => $info['count'],
+            'order_ids'            => '' // kosongin aja gapapa
+        ];
+    }
 }
 
+echo json_encode([
+    'status' => 'success',
+    'data'   => $data
+]);
+
 $conn->close();
-echo json_encode($payment_statuses);
-exit();
 ?>

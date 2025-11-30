@@ -123,14 +123,12 @@ $adminName = htmlspecialchars($_SESSION['user']['name']);
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h2><i class="fas fa-mug-hot"></i> <span>Lamperie</span></h2>
+            <h2><i class="fas fa-mug-hot"></i> <span>Arji</span></h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="admin_dashboard.php"><i class="fas fa-tachometer-alt icon"></i> <span class="menu-text">Dashboard</span></a></li>
             <li><a href="form_menu.php"><i class="fas fa-plus-square icon"></i> <span class="menu-text">Tambah Menu</span></a></li>
             <li><a href="data_menu.php"><i class="fas fa-utensils icon"></i> <span class="menu-text">Data Menu</span></a></li>
-            <li><a href="kelola_berita.php"><i class="fas fa-newspaper icon"></i> <span class="menu-text">Update Berita</span></a></li>
-            <li class="active"><a href="kelola_diskon.php"><i class="fas fa-percent icon"></i> <span class="menu-text">Kelola Diskon</span></a></li>
             <li><a href="kelola_pengguna.php"><i class="fas fa-users icon"></i> <span class="menu-text">Kelola Pengguna</span></a></li>
         </ul>
         <div class="sidebar-footer">

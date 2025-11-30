@@ -1,110 +1,142 @@
 <?php
-// Ini akan dipanggil via AJAX, jadi tidak perlu session_start() lagi jika dashboard_waiters.php sudah memulainya
-// dan tidak ada logic PHP yang memerlukan session secara langsung di sini.
-// Namun, jika Anda menggunakan koneksi database di sini, pastikan koneksi.php sudah di-require
-require_once '../koneksi.php'; // Sesuaikan path
+require_once '../koneksi.php';
 
-// Pastikan hanya bisa diakses via AJAX atau dari script yang benar
-// if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
-//     header("Location: ../dashboard_waiters.php"); // Redirect jika diakses langsung
-//     exit();
-// }
+// Ambil semua reservasi yang BELUM SELESAI (bukan Cancelled/Completed/No Show)
+// dan urutkan dari yang paling dekat
+$query = "
+    SELECT 
+        id, 
+        customer_name, 
+        customer_email,
+        reservation_datetime, 
+        num_of_people, 
+        table_number, 
+        special_request, 
+        status,
+        seated_at
+    FROM reservations 
+    WHERE status NOT IN ('Cancelled', 'Completed', 'No Show')
+    ORDER BY 
+        CASE 
+            WHEN status IN ('Arrived', 'Seated') THEN 1
+            WHEN status = 'Confirmed' THEN 2  
+            ELSE 3 
+        END,
+        reservation_datetime ASC
+";
 
-// Ambil data reservasi
-$date_now_start = date('Y-m-d 00:00:00');
-$date_now_end = date('Y-m-d 23:59:59');
-
-$stmt = $conn->prepare("
-    SELECT id, customer_name, reservation_datetime, num_of_people, table_number, special_request, status, seated_at
-    FROM reservations
-    WHERE 
-        (reservation_datetime BETWEEN ? AND ?) OR 
-        (status IN ('Confirmed', 'Arrived', 'Seated')) -- Tampilkan reservasi relevan untuk hari ini/yang sedang aktif
-    ORDER BY reservation_datetime ASC
-");
-$stmt->bind_param("ss", $date_now_start, $date_now_end);
-$stmt->execute();
-$result = $stmt->get_result();
-$reservations = [];
-while ($row = $result->fetch_assoc()) {
-    $reservations[] = $row;
-}
-$stmt->close();
+$result = $conn->query($query);
+$reservations = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 $conn->close();
 ?>
 
-<h3 class="border-bottom pb-2 mb-3">Reservasi Pengguna</h3>
-<div class="list-group">
-    <?php if (empty($reservations)): ?>
-        <p class="text-muted">Tidak ada reservasi aktif untuk saat ini.</p>
-    <?php else: ?>
-        <?php foreach ($reservations as $res): ?>
-            <?php
-            $statusBadgeClass = '';
-            $actionButtons = '';
-            $tableInfo = '';
-            $reservationClass = '';
+<h3 class="border-bottom pb-3 mb-4 ">
+    Reservasi Aktif & Mendatang
+</h3>
 
-            if ($res['status'] === 'Pending') {
-                $statusBadgeClass = 'bg-warning text-dark';
-                $reservationClass = 'pending-reservation';
-            } elseif ($res['status'] === 'Confirmed') {
-                $statusBadgeClass = 'bg-info text-dark';
-                $reservationClass = 'confirmed-reservation';
-                // PERBAIKAN DI SINI: Gunakan string concatenation PHP
-                $tableInfo = "(Meja " . ($res['table_number'] ?: 'Belum Ditentukan') . ")";
-                // Tombol "Konfirmasi Kedatangan" untuk status Confirmed
-                $actionButtons = '
-                    <button type="button" class="btn btn-sm btn-success" 
-                        onclick="confirmArrival(' . $res['id'] . ')">
-                        <i class="fas fa-check-circle me-1"></i> Konfirmasi Kedatangan
-                    </button>
-                ';
-            } elseif ($res['status'] === 'Arrived') {
-                $statusBadgeClass = 'bg-success';
-                $reservationClass = 'arrived-reservation';
-                // PERBAIKAN DI SINI: Gunakan string concatenation PHP
-                $tableInfo = "(Meja " . ($res['table_number'] ?: 'N/A') . ")";
-                $actionButtons = '
-                    <button type="button" class="btn btn-sm btn-secondary" onclick="completeReservation(' . $res['id'] . ')">
-                        <i class="fas fa-handshake me-1"></i> Selesai
-                    </button>
-                ';
-            } elseif ($res['status'] === 'Seated') { // Untuk reservasi lama yang mungkin masih 'Seated'
-                $statusBadgeClass = 'bg-primary';
-                $reservationClass = 'seated-reservation';
-                // PERBAIKAN DI SINI: Gunakan string concatenation PHP
-                $tableInfo = "(Meja " . ($res['table_number'] ?: 'N/A') . ")";
-                $actionButtons = '
-                    <button type="button" class="btn btn-sm btn-secondary" onclick="completeReservation(' . $res['id'] . ')">
-                        <i class="fas fa-handshake me-1"></i> Selesai
-                    </button>
-                ';
-            } elseif ($res['status'] === 'Cancelled') {
-                $statusBadgeClass = 'bg-danger';
-            } elseif ($res['status'] === 'No Show') {
-                $statusBadgeClass = 'bg-secondary';
-            } elseif ($res['status'] === 'Completed') {
-                $statusBadgeClass = 'bg-dark';
-                $reservationClass = 'completed-reservation';
-            }
+<?php if (empty($reservations)): ?>
+    <div class="text-center py-5">
+        <i class="far fa-calendar-times fa-4x text-muted mb-4"></i>
+        <h5 class="text-muted">Tidak ada reservasi aktif saat ini</h5>
+        <p class="text-muted">Semua reservasi sudah selesai atau belum ada yang masuk.</p>
+    </div>
+<?php else: ?>
+    <div class="row g-4">
+        <?php foreach ($reservations as $r): ?>
+            <?php
+            $datetime = new DateTime($r['reservation_datetime']);
+            $today = new DateTime();
+            $isToday = $datetime->format('Y-m-d') === $today->format('Y-m-d');
+            $isPast = $datetime < $today && !in_array($r['status'], ['Arrived', 'Seated']);
+
+            $cardClass = match($r['status']) {
+                'Pending'   => 'border-warning',
+                'Confirmed' => 'border-info',
+                'Arrived', 'Seated' => 'border-success',
+                default     => 'border-secondary'
+            };
+
+            $badgeClass = match($r['status']) {
+                'Pending'   => 'bg-warning text-dark',
+                'Confirmed' => 'bg-info text-white',
+                'Arrived', 'Seated' => 'bg-success text-white',
+                default     => 'bg-secondary'
+            };
             ?>
-            <div class="list-group-item d-flex justify-content-between align-items-center mb-2 shadow-sm <?php echo $reservationClass; ?>">
-                <div>
-                    <h5><?php echo htmlspecialchars($res['customer_name']); ?> <span class="badge <?php echo $statusBadgeClass; ?> status-badge"><?php echo htmlspecialchars($res['status']); ?></span> <?php echo $tableInfo; ?></h5>
-                    <p class="mb-1">Waktu Reservasi: <?php echo (new DateTime($res['reservation_datetime']))->format('d M Y H:i'); ?></p>
-                    <p class="mb-0">Jumlah Orang: <?php echo htmlspecialchars($res['num_of_people']); ?></p>
-                    <?php if (!empty($res['special_request'])): ?>
-                        <p class="mb-0 text-muted-small">Permintaan Khusus: <?php echo htmlspecialchars($res['special_request']); ?></p>
-                    <?php endif; ?>
-                    <?php if (!empty($res['seated_at'])): ?>
-                        <p class="mb-0 text-muted-small">Ditempatkan Pada: <?php echo (new DateTime($res['seated_at']))->format('d M Y H:i'); ?></p>
-                    <?php endif; ?>
-                </div>
-                <div>
-                    <?php echo $actionButtons; ?>
+
+            <div class="col-lg-6 col-xxl-4">
+                <div class="card <?= $cardClass ?> shadow-sm h-100">
+                    <div class="card-header <?= $badgeClass ?> text-white fw-bold d-flex justify-content-between align-items-center">
+                        <span><?= htmlspecialchars($r['customer_name']) ?></span>
+                        <small><?= $r['num_of_people'] ?> orang</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="mb-1">
+                                    <i class="far fa-calendar-alt text-primary"></i>
+                                    <?= $datetime->format('d M Y') ?>
+                                </h6>
+                                <h5 class="mb-0 text-primary">
+                                    <?= $datetime->format('H:i') ?> WIB
+                                    <?php if ($isToday): ?>
+                                        <span class="badge bg-danger ms-2">HARI INI</span>
+                                    <?php endif; ?>
+                                </h5>
+                            </div>
+                            <span class="badge <?= $badgeClass ?> fs-6"><?= $r['status'] ?></span>
+                        </div>
+
+                        <?php if ($r['table_number']): ?>
+                            <p class="mb-2">
+                                <i class="fas fa-chair text-success"></i>
+                                <strong>Meja <?= htmlspecialchars($r['table_number']) ?></strong>
+                            </p>
+                        <?php endif; ?>
+
+                        <?php if ($r['special_request']): ?>
+                            <p class="mb-2 text-muted small">
+                                <em>"<?= htmlspecialchars($r['special_request']) ?>"</em>
+                            </p>
+                        <?php endif; ?>
+
+                        <p class="mb-0 text-muted small">
+                            <i class="far fa-envelope"></i> <?= htmlspecialchars($r['customer_email']) ?>
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-light text-center">
+                        <?php if ($r['status'] === 'Pending' || $r['status'] === 'Confirmed'): ?>
+                            <button class="btn btn-success btn-sm me-2" onclick="confirmArrival(<?= $r['id'] ?>)">
+                                Konfirmasi Datang
+                            </button>
+                        <?php endif; ?>
+
+                        <?php if (in_array($r['status'], ['Arrived', 'Seated'])): ?>
+                            <button class="btn btn-primary btn-sm" onclick="completeReservation(<?= $r['id'] ?>)">
+                                Selesai & Kosongkan Meja
+                            </button>
+                        <?php endif; ?>
+
+                        <?php if ($isPast && $r['status'] === 'Confirmed'): ?>
+                            <small class="text-danger d-block mt-2">Telat! Belum dikonfirmasi</small>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
+        </div>
         <?php endforeach; ?>
-    <?php endif; ?>
-</div>
+    </div>
+<?php endif; ?>
+
+<script>
+
+    
+// Auto refresh setiap 15 detik
+setInterval(() => {
+    const active = document.querySelector('#sidebar .nav-link.active');
+    if (active && active.dataset.page === 'reservations') {
+        loadContent('reservations');
+    }
+}, 15000);
+</script>

@@ -60,6 +60,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'waiters') {
         .text-muted-small { font-size: 0.8em; color: #6c757d; }
     </style>
 </head>
+
+
 <body>
     <div id="sidebar" class="d-flex flex-column">
         <h4 class="text-center mb-4"><i class="fas fa-utensils me-2"></i> ARJI</h4>
@@ -115,7 +117,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'waiters') {
         } else if (page === 'offline_order') {
             url = 'order_offline.php'; // File baru untuk form order offline
         } else if (page === 'pending_orders') {
-            url = 'get_orders_waiter_view.php'; // File baru untuk view order pending waiters
+            url = 'get_orders_waiters_view.php'; // File baru untuk view order pending waiters
         } else if (page === 'payment_status') {
             url = 'get_payment_status_view.php'; // File baru untuk view status pembayaran
         } else {
@@ -242,6 +244,58 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'waiters') {
                 return response.json();
             });
     };
+
+
+    // Tambahkan ini di bagian script dashboard_waiters.php (sebelum </body>)
+window.markAsPaid = function(tableNumber) {
+    if (!confirm(`Tandai Meja ${tableNumber} sudah dibayar dan selesai?`)) return;
+
+    fetch('update_status.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'action=pay_table&table=' + tableNumber
+    })
+    .then(r => r.json())
+    .then(res => {
+        showNotification(res.message, res.status === 'success' ? 'success' : (res.status === 'info' ? 'info' : 'danger'));
+        if (res.status === 'success' || res.status === 'info') {
+            loadContent('payment_status'); // refresh tampilan pembayaran
+        }
+    })
+    .catch(() => showNotification('Gagal menghubungi server.', 'danger'));
+};
+
+// Tombol "Antar" di Pesanan Pending
+window.deliverItem = function(itemId) {
+    if (!confirm('Tandai item ini sudah diantar ke meja?')) return;
+
+    fetch('update_status.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'action=deliver&item_id=' + itemId
+    })
+    .then(r => r.json())
+    .then(res => {
+        showNotification(res.message, res.status === 'success' ? 'success' : 'warning');
+        if (res.status === 'success') loadContent('pending_orders');
+    });
+};
+
+// Tombol "Sudah Dibayar" di Status Pembayaran
+window.markAsPaid = function(tableNumber) {
+    if (!confirm(`Tandai Meja ${tableNumber} sudah dibayar dan selesai?`)) return;
+
+    fetch('update_status.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'action=pay_table&table=' + tableNumber
+    })
+    .then(r => r.json())
+    .then(res => {
+        showNotification(res.message, res.status === 'success' ? 'success' : 'info');
+        loadContent('payment_status'); // refresh
+    });
+};
     </script>
 </body>
 </html>
