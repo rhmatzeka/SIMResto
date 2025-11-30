@@ -36,7 +36,7 @@ $items = $query_items->get_result()->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation - LAMPERIE</title>
+    <title>Order Confirmation - ARJI</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .container { max-width: 600px; margin: 40px auto; padding: 20px; font-family: Arial, sans-serif; }

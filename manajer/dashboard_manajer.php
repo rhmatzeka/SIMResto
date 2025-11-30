@@ -14,7 +14,7 @@ $manajerName = htmlspecialchars($_SESSION['user']['name']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manager Dashboard - LAMPERIE</title>
+    <title>Manager Dashboard - ARJI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -49,23 +49,23 @@ $manajerName = htmlspecialchars($_SESSION['user']['name']);
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.php">
+                            <a class="nav-link active" href="dashboard_manajer.php">
                                 <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="laporan_penjualan.php">
-                                <i class="fas fa-chart-line me-2"></i>Sales Report
+                                <i class="fas fa-chart-line me-2"></i>Laporan Penjualan
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="manajemen_menu.php">
-                                <i class="fas fa-utensils me-2"></i>Menu Management
+                                <i class="fas fa-utensils me-2"></i>Manajemen Menu
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="manajemen_user.php">
-                                <i class="fas fa-users me-2"></i>User Management
+                                <i class="fas fa-users me-2"></i>Manajemen User
                             </a>
                         </li>
                         <li class="nav-item">

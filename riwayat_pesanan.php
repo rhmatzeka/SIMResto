@@ -76,7 +76,7 @@ if ($user_id > 0) {
             <?php foreach ($user_orders as $order): ?>
                 <div class="order-card">
                     <div class="order-top">
-                      <h4>Lamperie Restaurant</h4> <p class="order-date"><?php echo date('d M Y', strtotime($order['order_date'])); ?></p>
+                      <h4>ARJI Restaurant</h4> <p class="order-date"><?php echo date('d M Y', strtotime($order['order_date'])); ?></p>
                     </div>
                     <div class="order-body">
                         <a href="profil.php?tab=order-detail&order_id=<?php echo $order['order_id']; ?>">

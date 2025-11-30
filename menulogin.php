@@ -22,8 +22,8 @@ if (!$q) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu - Lamperie Restaurant</title>
-    <link rel="website icon" type="png" href="images/icon-lamperie.png" />
+    <title>Menu - ARJI Restaurant</title>
+    <link rel="website icon" type="png" href="arji.png" />
     
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,203 +38,9 @@ if (!$q) {
     
     <!-- Link CSS Asli Anda -->
     <link rel="stylesheet" href="css/menu.css" />
-
-    <!-- CSS TAMBAHAN UNTUK KERANJANG (VERSI FLOATING CARD) -->
-    <style>
-        /* Agar body tidak bisa discroll saat keranjang terbuka */
-        body.cart-open {
-            overflow: hidden;
-        }
-
-        /* --- Overlay Hitam (Latar Belakang Gelap) --- */
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 998; 
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .cart-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        /* --- KERANJANG (Versi Floating Card / Pendek) --- */
-        .cart-sidebar {
-            position: fixed;
-            /* Turunkan lebih jauh (100px) biar gak nabrak navbar */
-            top: 100px; 
-            /* Sembunyi di kanan luar */
-            right: -400px; 
-            
-            /* Lebar keranjang */
-            width: 320px; 
-            
-            /* TINGGI: Auto agar menyesuaikan isi (jadi pendek kalau isi dikit) */
-            height: auto; 
-            /* Batas maksimal tinggi (biar gak kepanjangan sampai bawah) */
-            max-height: 75vh; 
-            
-            background-color: #fff;
-            z-index: 999;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2); /* Shadow lebih lembut */
-            
-            /* Animasi membal sedikit saat muncul */
-            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            
-            display: flex;
-            flex-direction: column;
-            color: #333;
-            font-family: 'Poppins', sans-serif;
-            
-            /* Sudut membulat semua sisi karena melayang */
-            border-radius: 15px; 
-        }
-        
-        .cart-sidebar.active {
-            /* Saat muncul, beri jarak 20px dari kanan layar */
-            right: 20px; 
-        }
-
-        /* Header Keranjang */
-        .cart-header {
-            background-color: #ff8c00;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            font-size: 16px;
-            /* Radius hanya di atas */
-            border-radius: 15px 15px 0 0; 
-        }
-        .close-cart-btn {
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-        }
-
-        /* Isi Item Keranjang */
-        .cart-items-container {
-            flex: 1;
-            overflow-y: auto; /* Scroll jika item banyak */
-            padding: 15px;
-            background-color: #fcfcfc;
-        }
-
-        .cart-item {
-            background: white;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .cart-item-details h4 {
-            margin: 0 0 3px 0;
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-        }
-        .cart-item-details p {
-            margin: 0;
-            font-size: 11px;
-            color: #888;
-        }
-
-        .cart-item-price {
-            font-weight: bold;
-            color: #ff8c00;
-            font-size: 14px;
-        }
-
-        /* Footer Keranjang */
-        .cart-footer {
-            background: white;
-            padding: 15px;
-            border-top: 1px solid #eee;
-            /* Radius hanya di bawah */
-            border-radius: 0 0 15px 15px; 
-        }
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            color: #222;
-        }
-        .checkout-btn {
-            width: 100%;
-            background-color: #ff8c00;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .checkout-btn:hover {
-            background-color: #e07b00;
-        }
-
-        /* Floating Cart Button */
-        .floating-cart-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #ff8c00;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            cursor: pointer;
-            z-index: 990;
-            transition: transform 0.2s;
-        }
-        .floating-cart-btn:hover {
-            transform: scale(1.05);
-        }
-        .cart-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background-color: #d32f2f; 
-            color: white;
-            font-size: 11px;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            border: 2px solid white;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .cart-badge.pop {
-            transform: scale(1.3);
-        }
-    </style>
+    <link rel="stylesheet" href="css/troli.css" />
   </head>
+
   <body>
     <?php include 'navbar.php'; ?>
 
@@ -342,99 +148,140 @@ if (!$q) {
     <?php include 'footer.php'; ?>
     
     <!-- JAVASCRIPT LOGIKA KERANJANG -->
-    <script>
-        let cart = {};
+<script>
+    let cart = {};
 
-        function updateCart(id, change) {
-            const card = document.querySelector(`.menu-card[data-id='${id}']`);
-            const name = card.getAttribute('data-name');
-            const price = parseFloat(card.getAttribute('data-price'));
+    function updateCart(id, change) {
+        const card = document.querySelector(`.menu-card[data-id='${id}']`);
+        const name = card.getAttribute('data-name');
+        const price = parseFloat(card.getAttribute('data-price'));
 
-            if (!cart[id]) {
-                cart[id] = { name: name, price: price, qty: 0 };
-            }
-
-            cart[id].qty += change;
-            if (cart[id].qty < 0) cart[id].qty = 0;
-            if (cart[id].qty === 0) {
-                delete cart[id];
-            }
-
-            updateUI(id);
+        if (!cart[id]) {
+            cart[id] = { name: name, price: price, qty: 0 };
         }
 
-        function updateUI(id) {
-            // 1. Update angka di tengah tombol + - pada kartu menu
-            const qtyDisplay = document.getElementById(`qty-${id}`);
-            if (qtyDisplay) {
-                qtyDisplay.innerText = cart[id] ? cart[id].qty : 0;
-            }
-            
-            // 2. Render ulang sidebar (untuk data) dan update badge
-            renderSidebar();
+        cart[id].qty += change;
+        if (cart[id].qty < 0) cart[id].qty = 0;
+        if (cart[id].qty === 0) {
+            delete cart[id];
         }
 
-        function renderSidebar() {
-            const list = document.getElementById('cartItemsList');
-            const totalEl = document.getElementById('cartTotal');
-            const badgeEl = document.getElementById('floatingBadge');
-            
-            list.innerHTML = ''; 
-            
-            let grandTotal = 0;
-            let totalItems = 0;
-            let hasItems = false;
+        updateUI(id);
+    }
 
-            for (let itemId in cart) {
-                const item = cart[itemId];
-                if (item.qty > 0) {
-                    hasItems = true;
-                    const subtotal = item.price * item.qty;
-                    grandTotal += subtotal;
-                    totalItems += item.qty;
+    function updateUI(id) {
+        const qtyDisplay = document.getElementById(`qty-${id}`);
+        if (qtyDisplay) {
+            qtyDisplay.innerText = cart[id] ? cart[id].qty : 0;
+        }
+        renderSidebar();
+    }
 
-                    const itemHTML = `
-                        <div class="cart-item">
-                            <div class="cart-item-details">
-                                <h4>${item.name}</h4>
-                                <p>$${item.price.toFixed(2)} x ${item.qty}</p>
-                            </div>
-                            <div class="cart-item-price">
-                                $${subtotal.toFixed(2)}
-                            </div>
+    function renderSidebar() {
+        const list = document.getElementById('cartItemsList');
+        const totalEl = document.getElementById('cartTotal');
+        const badgeEl = document.getElementById('floatingBadge');
+        
+        list.innerHTML = ''; 
+        
+        let grandTotal = 0;
+        let totalItems = 0;
+        let hasItems = false;
+
+        for (let itemId in cart) {
+            const item = cart[itemId];
+            if (item.qty > 0) {
+                hasItems = true;
+                const subtotal = item.price * item.qty;
+                grandTotal += subtotal;
+                totalItems += item.qty;
+
+                const itemHTML = `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toFixed(2)} x ${item.qty}</p>
                         </div>
-                    `;
-                    list.innerHTML += itemHTML;
+                        <div class="cart-item-price">
+                            $${subtotal.toFixed(2)}
+                        </div>
+                    </div>
+                `;
+                list.innerHTML += itemHTML;
+            }
+        }
+
+        if (!hasItems) {
+            list.innerHTML = '<p style="text-align:center; margin-top:20px; color:#999; font-size: 13px;">Keranjang kosong.</p>';
+        }
+
+        totalEl.innerText = '$' + grandTotal.toFixed(2);
+        
+        badgeEl.innerText = totalItems;
+        
+        if (totalItems > 0) {
+            badgeEl.style.display = 'flex';
+            badgeEl.classList.add('pop');
+            setTimeout(() => badgeEl.classList.remove('pop'), 200);
+        } else {
+            badgeEl.style.display = 'none';
+        }
+    }
+
+    function toggleCart() {
+        const sidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('cartOverlay');
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.classList.toggle('cart-open');
+    }
+
+    // --- LOGIKA CHECKOUT (DIPERBARUI UNTUK DEBUGGING) ---
+    document.querySelector('.checkout-btn').addEventListener('click', function() {
+        if (Object.keys(cart).length === 0) {
+            alert("Keranjang belanja Anda kosong!");
+            return;
+        }
+
+        let totalAmount = 0;
+        for (let id in cart) {
+            totalAmount += cart[id].price * cart[id].qty;
+        }
+
+        if(!confirm("Apakah Anda yakin ingin memproses pesanan senilai $" + totalAmount.toFixed(2) + "?")) {
+            return;
+        }
+
+        // Kirim Data
+        fetch('checkout_process.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cart: cart, total: totalAmount })
+        })
+        .then(async response => {
+            const text = await response.text(); // Baca respon mentah
+            try {
+                const data = JSON.parse(text); // Coba ubah ke JSON
+                if (data.status === 'success') {
+                    alert("Pesanan Berhasil! Silakan tunggu konfirmasi.");
+                    cart = {};
+                    renderSidebar();
+                    document.querySelectorAll('.order-quantity').forEach(el => el.innerText = '0');
+                    toggleCart();
+                } else {
+                    alert("Gagal: " + data.message);
                 }
+            } catch (e) {
+                // Jika error JSON, tampilkan pesan error asli dari PHP (misal error database)
+                console.error("Server Error Response:", text);
+                alert("Terjadi Error di Server:\n" + text.substring(0, 150) + "...");
             }
-
-            if (!hasItems) {
-                list.innerHTML = '<p style="text-align:center; margin-top:20px; color:#999; font-size: 13px;">Keranjang kosong.</p>';
-            }
-
-            totalEl.innerText = '$' + grandTotal.toFixed(2);
-            
-            // Update Badge Angka (Ikon Merah)
-            badgeEl.innerText = totalItems;
-            
-            if (totalItems > 0) {
-                badgeEl.style.display = 'flex';
-                // Efek animasi kecil
-                badgeEl.classList.add('pop');
-                setTimeout(() => badgeEl.classList.remove('pop'), 200);
-            } else {
-                badgeEl.style.display = 'none';
-            }
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar');
-            const overlay = document.getElementById('cartOverlay');
-            
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.classList.toggle('cart-open');
-        }
-    </script>
+        })
+        .catch(error => {
+            console.error('Network Error:', error);
+            alert("Gagal menghubungi server. Pastikan file 'checkout_process.php' sudah ada.");
+        });
+    });
+</script>
   </body>
 </html>

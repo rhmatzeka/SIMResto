@@ -28,8 +28,8 @@ $result_diskon = $conn->query($query_diskon);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LAMPERIE</title>
-    <link rel="website icon" type="png" href="images/icon-lamperie.png" />
+    <title>ARJI</title>
+    <link rel="website icon" type="png" href="images/arji.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -94,7 +94,7 @@ $result_diskon = $conn->query($query_diskon);
         <div class="content">
           <h3>Why Choice Us</h3>
           <p>
-            We blend culinary artistry with premium ingredients to create a dining experience that delights the senses. With a cozy yet sophisticated atmosphere, LAMPERIE is the perfect destination for those who appreciate quality, taste, and style. </p>
+            We blend culinary artistry with premium ingredients to create a dining experience that delights the senses. With a cozy yet sophisticated atmosphere, ARJI is the perfect destination for those who appreciate quality, taste, and style. </p>
         </div>
       </div>
     </section>
@@ -108,7 +108,7 @@ $result_diskon = $conn->query($query_diskon);
                     <img src="images/chef/koki1.png" alt="Chef 1">
                 </div>
                 <div class="chef-info">
-                    <h3>Rahmat Ganteng</h3>
+                    <h3>Rahmat Eka Satria</h3>
                     <p>Sous Chef</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
@@ -122,7 +122,7 @@ $result_diskon = $conn->query($query_diskon);
                     <img src="images/chef/koki2.png" alt="Chef 2">
                 </div>
                 <div class="chef-info">
-                    <h3>Rahmat Eka</h3>
+                    <h3>Satrio Adjie Wicaksono</h3>
                     <p>Executive Chef</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>
@@ -136,7 +136,7 @@ $result_diskon = $conn->query($query_diskon);
                     <img src="images/chef/koki3.png" alt="Chef 3">
                 </div>
                 <div class="chef-info">
-                    <h3>Rahmat Ganz</h3>
+                    <h3>Sofyan Agung</h3>
                     <p>Chef de Partie</p>
                     <div class="social-icons">
                         <a href="https://github.com/rhmatzeka" aria-label="Facebook"><span class="icon"><i data-feather="github"></i></span></a>

@@ -8,7 +8,7 @@ if (isset($_GET['id']) && $_GET['id'] != $_SESSION['user']['id']) {
 
     // PENTING: Karena adanya foreign key di tabel `orders` ke `users`,
     // Anda harus memutuskan apa yang terjadi pada pesanan milik user yang dihapus.
-    // Di file `db_lamperieresto.sql`, constraint `fk_orders_users` TIDAK memiliki ON DELETE CASCADE.
+    // Di file `db_arjieresto.sql`, constraint `fk_orders_users` TIDAK memiliki ON DELETE CASCADE.
     // Artinya, Anda TIDAK BISA menghapus user jika ia masih punya data pesanan.
     
     // Solusi 1: Hapus dulu semua pesanan milik user tersebut.

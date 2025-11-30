@@ -72,7 +72,7 @@ $kasirName = htmlspecialchars($_SESSION['user']['name']);
         <section class="content-area printable-area">
             <div class="order-details-container">
                 <div class="header-print" style="display: none;">
-                    <h2>Struk Pesanan - Lamperie Resto</h2>
+                    <h2>Struk Pesanan - ARJI Restaurant</h2>
                     <p>Pesanan #<?= $order['order_id'] ?></p>
                 </div>
                 

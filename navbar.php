@@ -23,7 +23,7 @@ if(!isset($_SESSION['user'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar</title> <link rel="website icon" type="png" href="images/icon-lamperie.png" />
+  <title>Navbar</title> <link rel="website icon" type="png" href="images/arji.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,7 +35,7 @@ if(!isset($_SESSION['user'])) {
 </head>
 <body>
   <nav class="navbar">
-      <a href="dashboard.php" class="navbar-logo"> <img src="images/arji.png" alt="Lamperie Logo" class="img-navbar"/>
+      <a href="dashboard.php" class="navbar-logo"> <img src="images/arji.png" alt="ARJI Logo" class="img-navbar"/>
       </a>
       <div class="navbar-nav"> <a href="dashboard.php">Home</a>
         <a href="dashboard.php#about">About Us</a> <a href="menulogin.php">Menu</a>

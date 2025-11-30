@@ -20,7 +20,7 @@ $result_diskon = $conn->query($query_diskon);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ARJI RESTO</title>
+    <title>ARJI Restaurant</title>
     <link rel="website icon" type="png" href="images/arji.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -79,7 +79,7 @@ $result_diskon = $conn->query($query_diskon);
         <div class="content">
           <h3>Why Choice Us</h3>
           <p>
-            We blend culinary artistry with premium ingredients to create a dining experience that delights the senses. With a cozy yet sophisticated atmosphere, LAMPERIE is the perfect destination for those who appreciate quality, taste, and style. </p>
+            We blend culinary artistry with premium ingredients to create a dining experience that delights the senses. With a cozy yet sophisticated atmosphere, ARJI is the perfect destination for those who appreciate quality, taste, and style. </p>
         </div>
       </div>
     </section>

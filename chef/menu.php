@@ -10,7 +10,7 @@ $q = $conn->query("SELECT * FROM menu_items");
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
-    <link rel="website icon" type="png" href="images/icon-lamperie.png" />
+    <link rel="website icon" type="png" href="images/arji.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,7 +23,7 @@ $q = $conn->query("SELECT * FROM menu_items");
 <body>
     <nav class="navbar">
       <a href="#home" class="navbar-logo">
-        <img src="images/icon-lamperie.png" alt="" class="img-navbar"
+        <img src="images/arji.png" alt="" class="img-navbar"
       /></a>
       <div class="navbar-nav">
         <a href="index.php">Home</a>
