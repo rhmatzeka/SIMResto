@@ -104,7 +104,7 @@ $result_diskon = $conn->query($query_diskon);
             </div>
             <div class="chef-card">
                 <div class="chef-image">
-                    <img src="images/chef/koki2.jpg" alt="Chef 2">
+                    <img src="images/chef/jpg" alt="Chef 2">
                 </div>
                 <div class="chef-info">
                     <h3>Adjie Hitam</h3>
